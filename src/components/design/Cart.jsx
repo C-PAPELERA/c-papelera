@@ -10,7 +10,7 @@ const Cart = () => {
   return (
     <div className="relative flex gap-2 items-center">
       <a href="/store/cart?store-page=cart" rel="noopener noreferrer">
-        <div className="p-1.5 bg-white/90 rounded-lg">
+        <div className="p-1.5 bg-white rounded-lg">
           <ShoppingBag strokeWidth={1.5} className="size-5 cursor-pointer" stroke="#012F49" />
         </div>
       </a>

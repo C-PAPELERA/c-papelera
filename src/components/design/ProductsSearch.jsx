@@ -94,7 +94,7 @@ const ProductsSearch = () => {
         <PopoverTrigger asChild>
           <Button
             variant="link"
-            className="!p-1.5 bg-white/90 rounded-lg !h-8"
+            className="!p-1.5 bg-white rounded-lg !h-8"
           >
             <Search strokeWidth={1.5} className="size-5 cursor-pointer" stroke="#012F49" />
           </Button>

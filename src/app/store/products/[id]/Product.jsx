@@ -47,8 +47,8 @@ const parseHtmlListToObject = (text) => {
 const RelatedProductsSection = ({ product }) => {
   return (
     <div className="py-10 flex flex-col gap-4">
-      <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-        Productos relacionados
+      <h2 className="text-3xl font-bold tracking-tight text-papelera">
+        PRODUCTOS RELACIONADOS
       </h2>
       <RelatedProducts productIds={product.relatedProducts.productIds} />
     </div>
@@ -156,7 +156,7 @@ const Product = ({ productRes, breadcrumbs, params }) => {
           {/* Info */}
           <div className="mt-6 md:mt-0 lg:sticky top-[200px] flex flex-col gap-6">
             <div className="flex flex-col gap-2">
-              <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+              <h1 className="text-3xl font-bold tracking-tight text-papelera">
                 {product.name}
               </h1>
               <p className="text-gray-500">REF {sku}</p>
@@ -190,7 +190,7 @@ const Product = ({ productRes, breadcrumbs, params }) => {
               )}
             </div>
             <div className="flex flex-col gap-2">
-              <div className="relative flex gap-1">
+              {/* <div className="relative flex gap-1">
                 <p
                   className={clsx("font-medium tracking-tight text-gray-900", {
                     "text-red-500": error.type === "size",
@@ -201,7 +201,7 @@ const Product = ({ productRes, breadcrumbs, params }) => {
                 {error.type === "size" && (
                   <span className="size-1 animate-ping rounded-full bg-red-600 opacity-75"></span>
                 )}
-              </div>
+              </div> */}
               <VariantOptions
                 combinations={product.combinations}
                 selectedSize={selectedSize}
@@ -244,7 +244,7 @@ const Product = ({ productRes, breadcrumbs, params }) => {
                 />
               </div>
               <Button
-                className={"sm:w-2/4 !text-base bg-black"}
+                className={"sm:w-2/4 !text-base rounded-md bg-papelera hover:bg-papelera"}
                 size={"lg"}
                 onClick={handleAddToCart}
               >

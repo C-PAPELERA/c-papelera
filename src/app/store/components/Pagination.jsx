@@ -25,9 +25,9 @@ const Pagination = ({ offset, setOffset, totalProducts }) => {
           onClick={() => {
             if (currentPage > 1) updateOffset(offset - limite);
           }}
-          className="inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+          className="group inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-papelera hover:text-papelera"
         >
-          <ArrowLeft aria-hidden="true" className="mr-3 size-5 text-gray-400" />
+          <ArrowLeft aria-hidden="true" className="mr-3 size-5 text-gray-400 group-hover:text-papelera" />
           Anterior
         </button>
       </div>
@@ -38,7 +38,7 @@ const Pagination = ({ offset, setOffset, totalProducts }) => {
             onClick={() => updateOffset(index * limite)}
             className={clsx(
               index + 1 === currentPage
-                ? "border-sky-400 text-sky-600"
+                ? "border-papelera text-papelera"
                 : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
               "inline-flex items-center border-t-2 pt-4 px-4 text-sm font-medium"
             )}
@@ -52,12 +52,12 @@ const Pagination = ({ offset, setOffset, totalProducts }) => {
           onClick={() => {
             if (currentPage < totalPages) updateOffset(offset + limite);
           }}
-          className="inline-flex items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+          className="group inline-flex items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium text-gray-500 hover:border-papelera hover:text-papelera"
         >
           Siguiente
           <ArrowRightIcon
             aria-hidden="true"
-            className="ml-3 size-5 text-gray-400"
+            className="ml-3 size-5 text-gray-400 group-hover:text-papelera"
           />
         </button>
       </div>

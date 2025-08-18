@@ -103,7 +103,7 @@ const FilterProducts = ({ categories, sizes }) => {
           )}
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="sizes">
+      {/* <AccordionItem value="sizes">
         <AccordionTrigger>Tallas</AccordionTrigger>
         <AccordionContent className="flex flex-col gap-4">
           {sizes?.length > 0 ? (
@@ -124,7 +124,7 @@ const FilterProducts = ({ categories, sizes }) => {
             <span className="text-sm">No hay tallas</span>
           )}
         </AccordionContent>
-      </AccordionItem>
+      </AccordionItem> */}
     </Accordion>
   );
 };

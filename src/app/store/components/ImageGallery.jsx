@@ -50,19 +50,18 @@ const ImageGallery = ({ galleryImages, productName, isMobile }) => {
     });
   }, [api]);
 
-  if (isMobile) {
     return (
       <div className="w-full">
         <Carousel setApi={setApi} className="mx-auto max-w-xl">
           <CarouselContent>
             {galleryImages.map((image, index) => (
               <CarouselItem key={`image-${index}`}>
-                <div className="relative w-full aspect-[3/5] overflow-hidden rounded-md">
+                <div className="relative w-full aspect-[4/5] overflow-hidden rounded-md">
                   <Image
                     src={image.imageOriginalUrl}
                     alt={`${productName} - ${index + 1}`}
                     fill
-                    className="object-cover transition-transform duration-300 ease-out"
+                    className="object-contain transition-transform duration-300 ease-out"
                     style={{
                       transformOrigin: cursorPositions[index]
                         ? `${cursorPositions[index].x}% ${cursorPositions[index].y}%`
@@ -91,36 +90,6 @@ const ImageGallery = ({ galleryImages, productName, isMobile }) => {
         </div>
       </div>
     );
-  }
-
-  return (
-    <div className="grid grid-cols-2 gap-4">
-      {galleryImages.map((image, index) => (
-        <div
-          key={`image-${index}`}
-          className="relative aspect-[3/5] w-full rounded-lg overflow-hidden cursor-zoom-in ring-1 ring-gray-100"
-          onClick={() => toggleZoom(index)}
-          onMouseMove={(e) => handleMouseMove(index, e)}
-          onMouseLeave={() => setZoomStates(prev => ({ ...prev, [index]: false }))}
-          ref={(el) => (imgRefs.current[index] = el)}
-        >
-          <Image
-            src={image.imageOriginalUrl}
-            alt={`${productName} - ${index + 1}`}
-            fill
-            className={`object-cover transition-transform duration-300 ease-out ${
-              zoomStates[index] ? "scale-200" : "scale-100"
-            }`}
-            style={{
-              transformOrigin: cursorPositions[index]
-                ? `${cursorPositions[index].x}% ${cursorPositions[index].y}%`
-                : "center",
-            }}
-          />
-        </div>
-      ))}
-    </div>
-  );
 };
 
 export default ImageGallery;

@@ -25,7 +25,7 @@ const SidebarItems = ({ label, link, options }) => {
   ) : (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button variant="link">
+        <Button variant="link" className="ml-3" >
           {label}
           {open ? (
             <ChevronDown strokeWidth={1} className="w-5 h-5" />

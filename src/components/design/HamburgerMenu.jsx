@@ -28,7 +28,7 @@ const HamburgerMenu = () => {
       <SheetTrigger asChild>
         <Button
           variant="ghost"
-          className="bg-slate-400/20 !p-1.5 rounded-lg h-fit"
+          className="bg-white !p-1.5 rounded-lg h-fit"
         >
           <MenuIcon strokeWidth={1.5} className="size-5" />
         </Button>
@@ -39,8 +39,13 @@ const HamburgerMenu = () => {
           <SheetDescription />
         </SheetHeader>
         <div className="flex flex-col h-screen">
-          <nav className="text-center h-full pb-6">
+          <nav className="text-center h-full pb-6 pt-6">
             <ul className="flex flex-col items-center gap-6">
+              <li>
+                <a className="text-sm font-medium items-center hover:bg-slate-300/20 p-2 rounded-lg cursor-pointer" href="/store/cart?store-page=account" rel="noopener noreferrer">
+                  Mi Cuenta
+                </a>
+              </li>
               {dataGeneral.map((item) => (
                 <SidebarItems key={item.label} {...item} />
               ))}
