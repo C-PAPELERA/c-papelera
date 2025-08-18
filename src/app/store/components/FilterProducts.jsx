@@ -22,7 +22,7 @@ const FilterProducts = ({ categories }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
 
   /* Tallas */
-  const [selectedSizes, setSelectedSizes] = useState([]);
+  // const [selectedSizes, setSelectedSizes] = useState([]);
 
   const isLoading = useRef(false);
 
@@ -63,17 +63,17 @@ const FilterProducts = ({ categories }) => {
     }
   }, [selectedCategories]);
 
-  useEffect(() => {
-    const newParams = new URLSearchParams(searchParams.toString()); // clona los params actuales
+  // useEffect(() => {
+  //   const newParams = new URLSearchParams(searchParams.toString()); // clona los params actuales
 
-    if (selectedSizes.length > 0) {
-      newParams.set("option_Talla", selectedSizes.join(","));
-      router.push(`?${newParams.toString()}`);
-    } else if (isLoading.current) {
-      newParams.delete("option_Talla");
-      router.push(`?${newParams.toString()}`);
-    }
-  }, [selectedSizes]);
+  //   if (selectedSizes.length > 0) {
+  //     newParams.set("option_Talla", selectedSizes.join(","));
+  //     router.push(`?${newParams.toString()}`);
+  //   } else if (isLoading.current) {
+  //     newParams.delete("option_Talla");
+  //     router.push(`?${newParams.toString()}`);
+  //   }
+  // }, [selectedSizes]);
 
   useEffect(() => {
     if (!isLoading.current) isLoading.current = true;

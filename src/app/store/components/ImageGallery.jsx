@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   Carousel,
@@ -11,7 +11,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const ImageGallery = ({ galleryImages, productName }) => {
   // const [zoomStates, setZoomStates] = useState({});
-  const [cursorPositions, setCursorPositions] = useState({});
+  // const [cursorPositions, setCursorPositions] = useState({});
   // const imgRefs = useRef({});
 
   const [api, setApi] = useState(null);
@@ -62,11 +62,11 @@ const ImageGallery = ({ galleryImages, productName }) => {
                     alt={`${productName} - ${index + 1}`}
                     fill
                     className="object-contain transition-transform duration-300 ease-out"
-                    style={{
-                      transformOrigin: cursorPositions[index]
-                        ? `${cursorPositions[index].x}% ${cursorPositions[index].y}%`
-                        : "center",
-                    }}
+                    // style={{
+                    //   transformOrigin: cursorPositions[index]
+                    //     ? `${cursorPositions[index].x}% ${cursorPositions[index].y}%`
+                    //     : "center",
+                    // }}
                   />
                 </div>
               </CarouselItem>
