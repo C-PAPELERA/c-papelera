@@ -48,7 +48,7 @@ const Header = () => {
           className="w-full flex justify-between items-center gap-10"
         >
           <div className="flex items-center gap-6">
-            <Link href="/" onClick={() => window.location.href = "/"}>
+            <Link href="/">
               <Image
                 src="/assets/img/logo-full.png"
                 alt="Logo Comercial Papelera"
@@ -80,15 +80,15 @@ const Header = () => {
       {/* Barra categorias siempre visible */}
       <Container classNameParent="bg-white hidden lg:block">
         <div className="flex flex-row justify-between text-center text-[15px] uppercase text-papelera font-medium py-3.5">
-          <Link className="hover:underline" href="">Impresión en Línea</Link>
-          <Link className="hover:underline" href="">Estudiantil</Link>
-          <Link className="hover:underline" href="">Oficina</Link>
-          <Link className="hover:underline" href="">Arte</Link>
-          <Link className="hover:underline" href="">Tecnología</Link>
-          <Link className="hover:underline" href="">Hogar</Link>
-          <Link className="hover:underline" href="">Lectura</Link>
-          <Link className="hover:underline" href="">Fiesta</Link>
-          <Link className="hover:underline" href="">Snacks</Link>
+          <Link className="hover:underline" href="/store">Impresión en Línea</Link>
+          <Link className="hover:underline" href="/store">Estudiantil</Link>
+          <Link className="hover:underline" href="/store">Oficina</Link>
+          <Link className="hover:underline" href="/store">Arte</Link>
+          <Link className="hover:underline" href="/store">Tecnología</Link>
+          <Link className="hover:underline" href="/store">Hogar</Link>
+          <Link className="hover:underline" href="/store">Lectura</Link>
+          <Link className="hover:underline" href="/store">Fiesta</Link>
+          <Link className="hover:underline" href="/store">Snacks</Link>
         </div>
       </Container>
     </header>
