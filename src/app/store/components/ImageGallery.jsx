@@ -9,35 +9,35 @@ import {
 } from "@/components/ui/carousel";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const ImageGallery = ({ galleryImages, productName, isMobile }) => {
-  const [zoomStates, setZoomStates] = useState({});
+const ImageGallery = ({ galleryImages, productName }) => {
+  // const [zoomStates, setZoomStates] = useState({});
   const [cursorPositions, setCursorPositions] = useState({});
-  const imgRefs = useRef({});
+  // const imgRefs = useRef({});
 
   const [api, setApi] = useState(null);
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
 
-  const handleMouseMove = (index, e) => {
-    const imgRef = imgRefs.current[index];
-    if (!imgRef) return;
+  // const handleMouseMove = (index, e) => {
+  //   const imgRef = imgRefs.current[index];
+  //   if (!imgRef) return;
 
-    const { left, top, width, height } = imgRef.getBoundingClientRect();
-    const x = ((e.clientX - left) / width) * 100;
-    const y = ((e.clientY - top) / height) * 100;
+  //   const { left, top, width, height } = imgRef.getBoundingClientRect();
+  //   const x = ((e.clientX - left) / width) * 100;
+  //   const y = ((e.clientY - top) / height) * 100;
 
-    setCursorPositions((prev) => ({
-      ...prev,
-      [index]: { x, y },
-    }));
-  };
+  //   setCursorPositions((prev) => ({
+  //     ...prev,
+  //     [index]: { x, y },
+  //   }));
+  // };
 
-  const toggleZoom = (index) => {
-    setZoomStates((prev) => ({
-      ...prev,
-      [index]: !prev[index],
-    }));
-  };
+  // const toggleZoom = (index) => {
+  //   setZoomStates((prev) => ({
+  //     ...prev,
+  //     [index]: !prev[index],
+  //   }));
+  // };
 
   useEffect(() => {
     if (!api) {

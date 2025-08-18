@@ -48,7 +48,7 @@ const Header = () => {
           className="w-full flex justify-between items-center gap-10"
         >
           <div className="flex items-center gap-6">
-            <a href="/">
+            <Link href="/" onClick={() => window.location.href = "/"}>
               <Image
                 src="/assets/img/logo-full.png"
                 alt="Logo Comercial Papelera"
@@ -56,7 +56,7 @@ const Header = () => {
                 height="90"
                 className="w-[250px] object-cover"
               />
-            </a>
+            </Link>
           </div>
           <div className="justify-end flex items-center gap-2">
             <ProductsSearch />

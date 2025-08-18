@@ -14,7 +14,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-const FilterProducts = ({ categories, sizes }) => {
+const FilterProducts = ({ categories }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -39,15 +39,15 @@ const FilterProducts = ({ categories, sizes }) => {
     });
   };
 
-  const handleChangeSizes = (checked, size) => {
-    setSelectedSizes((prevSizes) => {
-      if (checked) {
-        return [...prevSizes, size.filterId];
-      } else {
-        return prevSizes.filter((sizeId) => sizeId !== size.filterId);
-      }
-    });
-  };
+  // const handleChangeSizes = (checked, size) => {
+  //   setSelectedSizes((prevSizes) => {
+  //     if (checked) {
+  //       return [...prevSizes, size.filterId];
+  //     } else {
+  //       return prevSizes.filter((sizeId) => sizeId !== size.filterId);
+  //     }
+  //   });
+  // };
 
   /* useEffect */
 
