@@ -22,14 +22,14 @@ const ProductCard = ({ product, setOpen }) => {
       onClick={() => setOpen(false)}
       className="flex flex-col gap-4 items-center"
     >
-      <div className="group relative w-full aspect-[3/5] rounded-lg ring-1 ring-gray-900/5 hover:ring-gray-900/10 overflow-hidden">
+      <div className="group relative w-full aspect-[4/5] rounded-lg ring-1 ring-gray-900/5 hover:ring-gray-900/10 overflow-hidden">
         <Image
           alt={product.seoDescription}
           src={product.hdThumbnailUrl}
           width={500}
           height={500}
           className={cn(
-            "absolute inset-0 size-full object-cover transition-opacity duration-500 opacity-100 rounded-md",
+            "absolute transition-opacity duration-500 opacity-100 size-full object-contain",
             product.galleryImages.length > 0 && "group-hover:opacity-0"
           )}
         />
@@ -53,7 +53,7 @@ const ProductCard = ({ product, setOpen }) => {
         )}
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 bottom-0 h-36 bg-linear-to-t from-black opacity-40"
+          className="absolute inset-x-0 bottom-0 h-36 bg-linear-to-t from-black opacity-5"
         />
       </div>
       <div className="flex flex-col items-center">

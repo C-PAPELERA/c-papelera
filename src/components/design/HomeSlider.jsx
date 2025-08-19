@@ -33,7 +33,7 @@ const HomeSlider = () => {
       }}
       className="pt-3 relative"
     >
-      <CarouselContent className="h-[400px] md:h-[720px] !-ml-0">
+      <CarouselContent className="h-[400px] md:h-[520px] 2xl:h-[660px] !-ml-0">
         {items.map((item, index) => (
           <CarouselItem
             key={item.id}

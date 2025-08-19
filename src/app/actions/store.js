@@ -82,7 +82,7 @@ export async function searchProducts(text) {
   const res = await ecwidFetch({
     method: "GET",
     path: `/products`,
-    query: { keyword: text, enabled: "true", limit: 5 },
+    query: { keyword: text, enabled: "true", limit: 5, searchMethod: "CP" },
   });
 
   return res.body?.items;

@@ -24,7 +24,6 @@ export default async function Page() {
       </div>
       <Script id="ecStoreProductBrowser-script">
         {`
-        console.log('Inicio de ecStoreProductBrowser-script');
         let checkout = {
           id: '${cartId}',
           itemsCount: 0
@@ -34,16 +33,18 @@ export default async function Page() {
         let ecwidLoaded = false;
 
         function load_ecwid() {
-          console.log('Inicio de load_ecwid');
           if (typeof Ecwid != 'undefined') {
             Ecwid.OnAPILoaded.add(function () {
               if (!ecwidLoaded) {
-                console.log('Ecwid loaded');
                 ecwidLoaded = true;
                 xProductBrowser("categoriesPerRow=3", "views=grid(3,3) list(10) table(20)", "categoryView=grid", "searchView=list", "id=ecStoreProductBrowser");
               }
-            });
 
+              if (window.location.pathname == '/store/cart' && window.location.search == '') {
+                Ecwid.openPage('cart');
+              }
+            });
+                                    
             Ecwid.OnPageSwitch.add(function (page) {
               let is_cart_page = page.type == 'CART';
               let is_download_error_page = page.type == 'DOWNLOAD_ERROR';
@@ -54,10 +55,10 @@ export default async function Page() {
                 document.cookie = 'cartId=';
               }
 
-              if (page.type == 'CATEGORY') {
-                Ecwid.openPage('cart');
-                return true;
-              }
+              if (page.type === "PRODUCT") {
+                window.location.href = '/store/products/' + page.productId;
+                return false;
+              }            
             });
           }
         }
@@ -76,7 +77,6 @@ export default async function Page() {
         window.ecwid_dynamic_widgets = true;
 
         if (!document.getElementById('ecwid-script')) {
-          console.log('Ecwid script not found');
           var script = document.createElement('script');
           script.type = 'text/javascript';
           script.src = 'https://app.ecwid.com/script.js?${storeId}&data_platform=nextjs_commerce&storefront-v3=true';
@@ -84,7 +84,6 @@ export default async function Page() {
           script.onload = load_ecwid
           document.body.appendChild(script);
         } else {
-          console.log('Ecwid script found');
           load_ecwid()
         }`}
       </Script>
