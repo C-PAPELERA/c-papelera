@@ -110,14 +110,14 @@ export default function Home() {
         <div className="w-full grid grid-cols-2 xs:grid-cols-4 xl:grid-cols-8 gap-x-0 gap-y-8 mt-10">
           {featuredCategories.map((category) => (
             <Link key={category.title} href={category.link} aria-label={category.title}>
-              <div className="group hover:scale-105 transition-all flex flex-col items-center">
+              <div className="group hover:scale-105 transition-all duration-300 flex flex-col items-center">
                 <div className={`${category.color} rounded-full border-1 border-papelera/80 shadow-sm group-hover:border-papelera group-hover:shadow-md transition-all w-24 h-24 sm:w-30 sm:h-30 flex items-center justify-center p-5`}>
                   <Image
                     alt={category.title}
                     src={category.image}
                     width={60}
                     height={60}
-                    className="size-[50px] sm:size-[55px] lg:size-[55px] group-hover:scale-110 transition-transform"
+                    className="size-[50px] sm:size-[55px] lg:size-[55px] group-hover:scale-110 duration-300 transition-transform"
                   />
                 </div>
                 <p className="text-sm font-medium text-papelera mt-3 text-center">

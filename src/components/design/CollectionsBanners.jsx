@@ -34,7 +34,7 @@ export default function CollectionsBanners() {
                 <img
                   alt={callout.imageAlt}
                   src={callout.imageSrc}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <h3 className="mt-6 text-sm text-gray-500">

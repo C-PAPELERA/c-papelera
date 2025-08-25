@@ -44,7 +44,7 @@ const ProductCard = ({ product, setOpen }) => {
             width={500}
             height={500}
             className={cn(
-              "absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-100 p-8",
+              "absolute inset-0 size-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-100 p-8",
               product.galleryImages.length > 0 && "group-hover:opacity-0"
             )}
           />
@@ -55,7 +55,7 @@ const ProductCard = ({ product, setOpen }) => {
               src={product.galleryImages[0]?.imageUrl}
               width={500}
               height={500}
-              className="absolute inset-0 size-full object-cover transition-opacity duration-500 opacity-0 group-hover:opacity-100"
+              className="absolute inset-0 size-full object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100"
             />
           )}
           {product.ribbon && (
