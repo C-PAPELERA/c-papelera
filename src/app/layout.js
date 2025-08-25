@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
         {/* Otras versiones opcionales para compatibilidad */}
         <link rel="shortcut icon" href="/assets/img/logo-icon.png" />
       </head>
-      <body className={`${rubik.variable} antialiased app-container pt-5 lg:pt-15 xl:pt-24 2xl:pt-28`}>
+      <body className={`${rubik.variable} antialiased app-container pt-5 lg:pt-15 xl:pt-24 2xl:pt-26`}>
         <LayoutVisibilityProvider>
           <StoreProvider>
             <LayoutWithVisibility>

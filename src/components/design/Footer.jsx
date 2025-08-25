@@ -62,7 +62,7 @@ const navigation = {
 export default function Footer() {
   return (
     <footer className="bg-papelera dark:bg-gray-900">
-      <div className="mx-auto max-w-7xl px-6 pt-20 pb-8 sm:pt-24 lg:px-8 lg:pt-24">
+      <div className="mx-auto max-w-[85%] px-6 pt-20 pb-8 sm:pt-24 lg:px-8 lg:pt-24">
         
         {/* Grid principal */}
         <div className="grid grid-cols-1 gap-12 xl:grid-cols-3 xl:gap-16">

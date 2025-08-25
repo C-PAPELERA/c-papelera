@@ -3,8 +3,10 @@ import Image from "next/image";
 import HomeSlider from "@/components/design/HomeSlider";
 import Container from "@/components/design/Container";
 import FeaturedProducts from "@/components/design/FeaturedProducts";
-import FeaturedBanners from "@/components/design/FeaturedBanners";
 import Footer from "@/components/design/Footer";
+import PromoBanners from "@/components/design/PromoBanners";
+import CollectionsBanners from "@/components/design/CollectionsBanners";
+import PromoBanner from "@/components/design/PromoBanner";
 
 const featuredCategories = [
   {
@@ -12,56 +14,56 @@ const featuredCategories = [
     image:
       "/assets/svg/impresion.svg",
     link: "/store",
-    color: "bg-white/80",
+    color: "bg-blue-500/40",
   },
   {
     title: "Oficina",
     image:
       "/assets/svg/stapler-remover.svg",
     link: "/store",
-    color: "bg-white/80",
+    color: "bg-indigo-500/40",
   },
   {
     title: "Estudiantil",
     image:
       "/assets/svg/backpack.svg",
     link: "/store",
-    color: "bg-white/80",
+    color: "bg-orange-500/40",
   },
   {
     title: "Tecnología",
     image:
       "/assets/svg/sound.svg",
     link: "/store",
-    color: "bg-white/80",
+    color: "bg-cyan-500/40",
   },
   {
     title: "Arte",
     image:
       "/assets/svg/paint-palette.svg",
     link: "/store",
-    color: "bg-white/80",
+    color: "bg-emerald-500/40",
   },
   {
     title: "Fiesta",
     image:
       "/assets/svg/balloon.svg",
     link: "/store/products/726057533",
-    color: "bg-white/80",
+    color: "bg-red-500/40",
   },
   {
     title: "Hogar",
     image:
       "/assets/svg/clean-house.svg",
     link: "/store",
-    color: "bg-white/80",
+    color: "bg-yellow-500/40",
   },
   {
     title: "Lectura",
     image:
       "/assets/svg/open-book.svg",
     link: "/store",
-    color: "bg-white/80",
+    color: "bg-purple-500/40",
   },
 ];
 
@@ -75,7 +77,7 @@ const perks = [
   {
     name: 'Compra Online',
     imageUrl: '/assets/svg/compra-online.svg',
-    size: 'w-18 h-18',
+    size: 'w-16 h-16',
     description: 'Retira en nuestras tiendas',
   },
   {
@@ -87,7 +89,7 @@ const perks = [
   {
     name: 'Compra fácil y rápido',
     imageUrl: '/assets/svg/compra-facil.svg',
-    size: 'w-18 h-18',
+    size: 'w-16 h-16',
     description: 'Haz tus pedidos',
   },
 ]
@@ -96,26 +98,26 @@ export const dynamic = "force-static";
 
 export default function Home() {
   return (
-    <div className="w-full bg-papelera-2">
+    <div className="w-full">
       <HomeSlider />
       <Container
-        className={"pt-20 pb-20 flex flex-col gap-4 items-center justify-center"}
+        className={"w-[85%] pt-20 pb-20 flex flex-col gap-4 items-center justify-center"}
       >
-        <h3 className="text-2xl xs:text-3xl font-semibold text-papelera">
+        <h3 className="flex items-center justify-center text-2xl xs:text-3xl font-semibold text-papelera">
           Comprar por categoría
         </h3>
         {/* Categorías principales */}
-        <div className="w-[85%] grid grid-cols-2 xs:grid-cols-4 lg:grid-cols-8 gap-x-0 gap-y-8 mt-10">
+        <div className="w-full grid grid-cols-2 xs:grid-cols-4 xl:grid-cols-8 gap-x-0 gap-y-8 mt-10">
           {featuredCategories.map((category) => (
             <Link key={category.title} href={category.link} aria-label={category.title}>
               <div className="group hover:scale-105 transition-all flex flex-col items-center">
-                <div className={`${category.color} rounded-full border-1 border-papelera/80 shadow-sm group-hover:border-papelera group-hover:shadow-md transition-all w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center p-5`}>
+                <div className={`${category.color} rounded-full border-1 border-papelera/80 shadow-sm group-hover:border-papelera group-hover:shadow-md transition-all w-24 h-24 sm:w-30 sm:h-30 flex items-center justify-center p-5`}>
                   <Image
                     alt={category.title}
                     src={category.image}
                     width={60}
                     height={60}
-                    className="size-[50px] sm:size-[55px] lg:size-[50px] group-hover:scale-110 transition-transform"
+                    className="size-[50px] sm:size-[55px] lg:size-[55px] group-hover:scale-110 transition-transform"
                   />
                 </div>
                 <p className="text-sm font-medium text-papelera mt-3 text-center">
@@ -128,40 +130,60 @@ export default function Home() {
 
         {/* Productos destacados */}
         <div className="mt-20 flex items-center justify-center">
-          <FeaturedProducts limit={8} query={{ "category": 187492035 }} />
+          <FeaturedProducts limit={10} query={{ "category": 187492035 }} />
         </div>
 
         {/* Banners diseño */}
-        <FeaturedBanners />
+        <PromoBanners />
 
         {/* Productos destacados */}
-        <h3 className="text-2xl xs:text-3xl font-semibold text-papelera mt-15">
-          Los mejores productos
+        <h3 className="self-start text-2xl xs:text-3xl font-semibold text-papelera mt-15">
+          Los Mejores Productos
         </h3>
-        <FeaturedProducts limit={4} query={{ "category": 187492030 }} />
+        <FeaturedProducts limit={5} query={{ "category": 187492030 }} />
 
         {/* Productos destacados */}
-        <h3 className="text-2xl xs:text-3xl font-semibold text-papelera mt-15">
-          Los más vendidos
+        <h3 className="self-start text-2xl xs:text-3xl font-semibold text-papelera mt-25">
+          Los Más Vendidos
         </h3>
-        <FeaturedProducts limit={4} query={{ "category": 187493532 }} />
+        <FeaturedProducts limit={5} query={{ "category": 187493532 }} />
 
-        {/* Caracteristicas  */}
-        <div className="pt-50">
-          <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-5 xl:gap-20 w-full">
-            {perks.map((perk) => (
-              <div
-                key={perk.name}
-                className="flex flex-col items-center justify-center p-6"
-              >
-                <img alt="" src={perk.imageUrl} className={`mb-4 ${perk.size}`} />
-                <h3 className="text-lg text-center font-medium text-gray-900">{perk.name}</h3>
-                <p className="mt-1 text-md text-gray-500 text-center">{perk.description}</p>
-              </div>
-            ))}
-          </div>
+        {/* Colecciones diseño */}
+        <CollectionsBanners />
+
+        {/* Promo banner */}
+        <PromoBanner />
+
+        {/* Productos destacados */}
+        <div className="-mt-10 flex items-center justify-center">
+          <FeaturedProducts limit={5} query={{ "category": 187616293 }} />
         </div>
 
+        {/* Características */}
+        <div className="pt-40 pb-2">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-25">
+              {perks.map((perk) => (
+                <div
+                  key={perk.name}
+                  className="flex flex-col items-center text-center p-6"
+                >
+                  <div className="flex items-center justify-center w-28 h-28 rounded-full bg-gray-100/80 mb-5 p-5">
+                    <img
+                      alt={perk.name}
+                      src={perk.imageUrl}
+                      className={`h-8 w-8 object-contain ${perk.size}`}
+                    />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900">{perk.name}</h3>
+                  <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+                    {perk.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
       </Container>
 

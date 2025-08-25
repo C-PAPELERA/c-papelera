@@ -20,7 +20,7 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
+  
   return (
     <header className="fixed top-0 z-50 w-full bg-papelera transition-shadow duration-300 shadow-sm">
       {/* Solo visible cuando no está scrolleado */}
@@ -31,7 +31,7 @@ const Header = () => {
         )}
       >
         {/* Barra superior */}
-        <Container classNameParent="bg-papelera-2">
+        <Container classNameParent="bg-white">
           <div className="flex flex-col gap-y-3 xs:flex-row items-center justify-end text-papelera font-medium py-2.5">
             <div className="flex gap-6 items-center text-[15px]">
               <Link className="hover:underline" href="">Blog</Link>
@@ -93,8 +93,11 @@ const Header = () => {
       </Container>
 
       {/* Barra inferior */}
-      <div className="w-full">
-        <img src="/assets/img/banner-superior.png" alt="banner superior" className="w-full h-7 object-cover md:h-10 lg:h-full border-b border-papelera-2" />
+      <div className="w-full bg-papelera border-y border-white/20">
+        <Link href="/">
+          <p className="text-white text-md text-center py-2">Producto del Mes <strong>25% OFF</strong> ahorra $45.900</p>
+        </Link>
+        {/* <img src="/assets/img/banner-superior.png" alt="banner superior" className="w-full h-7 object-cover md:h-10 lg:h-full border-b border-papelera-2" /> */}
       </div>
     </header>
   );

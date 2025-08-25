@@ -18,7 +18,7 @@ const ProductCard = ({ product, showSidebar }) => {
       onClick={handleClick}
       className="group block w-full h-full transition-transform duration-300 hover:scale-[1.02]"
     >
-      <div className="flex flex-col h-full overflow-hidden bg-white/80 shadow-sm hover:shadow-lg transition-shadow">
+      <div className="flex flex-col h-full overflow-hidden bg-gray-50/30 shadow-sm shadow-papelera/20 hover:shadow-lg transition-shadow ring-1 ring-papelera/10 rounded-lg">
         <div
           onClick={handleClick}
           className={cn(
