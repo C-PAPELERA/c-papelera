@@ -44,7 +44,7 @@ const Header = () => {
 
         {/* Logo y otros */}
         <Container
-          classNameParent="pt-8 pb-8"
+          classNameParent="py-7 !bg-papelera"
           className="w-full flex justify-between items-center gap-10"
         >
           <div className="flex items-center gap-6">
@@ -79,18 +79,23 @@ const Header = () => {
 
       {/* Barra categorias siempre visible */}
       <Container classNameParent="bg-white hidden lg:block">
-        <div className="flex flex-row justify-between text-center text-[15px] uppercase text-papelera font-medium py-3.5">
-          <Link className="hover:underline" href="/store">Impresión en Línea</Link>
-          <Link className="hover:underline" href="/store">Estudiantil</Link>
-          <Link className="hover:underline" href="/store">Oficina</Link>
-          <Link className="hover:underline" href="/store">Arte</Link>
-          <Link className="hover:underline" href="/store">Tecnología</Link>
-          <Link className="hover:underline" href="/store">Hogar</Link>
-          <Link className="hover:underline" href="/store">Lectura</Link>
-          <Link className="hover:underline" href="/store">Fiesta</Link>
-          <Link className="hover:underline" href="/store">Snacks</Link>
+        <div className="flex flex-row justify-between text-center text-[14px] uppercase text-papelera font-semibold py-4">
+          <Link href="/store">Impresión en Línea</Link>
+          <Link href="/store">Estudiantil</Link>
+          <Link href="/store">Oficina</Link>
+          <Link href="/store">Arte</Link>
+          <Link href="/store">Tecnología</Link>
+          <Link href="/store">Hogar</Link>
+          <Link href="/store">Lectura</Link>
+          <Link href="/store">Fiesta</Link>
+          <Link href="/store">Snacks</Link>
         </div>
       </Container>
+
+      {/* Barra inferior */}
+      <div className="w-full">
+        <img src="/assets/img/banner-superior.png" alt="banner superior" className="w-full h-7 object-cover md:h-10 lg:h-full border-b border-papelera-2" />
+      </div>
     </header>
   );
 };

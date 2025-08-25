@@ -52,7 +52,7 @@ const ImageGallery = ({ galleryImages, productName }) => {
 
     return (
       <div className="w-full">
-        <Carousel setApi={setApi} className="mx-auto max-w-xl">
+        <Carousel setApi={setApi} className="mx-auto max-w-md">
           <CarouselContent>
             {galleryImages.map((image, index) => (
               <CarouselItem key={`image-${index}`}>

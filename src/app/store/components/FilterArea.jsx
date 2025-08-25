@@ -59,7 +59,7 @@ const FilterArea = ({
         <div
           className={`
           hidden sm:block transition-all duration-500 ease-in-out overflow-hidden
-          bg-white border-r pt-5
+          bg-papelera-2 border-r pt-5
           ${showSidebar ? "w-64 opacity-100 pr-4" : "w-0 opacity-0"}
         `}
           style={{ transitionProperty: "width, opacity, padding" }}

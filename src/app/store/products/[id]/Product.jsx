@@ -47,7 +47,7 @@ const RelatedProductsSection = ({ product }) => {
   return (
     <div className="py-10 flex flex-col gap-4">
       <h2 className="text-3xl font-bold tracking-tight text-papelera">
-        PRODUCTOS RELACIONADOS
+        Productos relacionados
       </h2>
       <RelatedProducts productIds={product.relatedProducts.productIds} />
     </div>
@@ -86,15 +86,15 @@ const Product = ({ productRes, breadcrumbs, params }) => {
     setIsAddedToCart(true);
     setError({});
 
-    if (!selectedSize) {
-      setError({
-        type: "size",
-        message: "Por favor especifique sus opciones",
-      });
+    // if (!selectedSize) {
+    //   setError({
+    //     type: "size",
+    //     message: "Por favor especifique sus opciones",
+    //   });
 
-      setIsAddedToCart(false);
-      return;
-    }
+    //   setIsAddedToCart(false);
+    //   return;
+    // }
 
     const quantity = Number(quantityRef.current.value) || 1;
 
@@ -103,9 +103,9 @@ const Product = ({ productRes, breadcrumbs, params }) => {
       category: product.defaultCategoryId,
       identifier: {
         productId: product.id,
-        selectedOptions: {
-          Talla: { type: "SIZE", choice: selectedSize },
-        },
+        // selectedOptions: {
+        //   Talla: { type: "SIZE", choice: selectedSize },
+        // },
       },
       isPreorder: false,
       quantity,

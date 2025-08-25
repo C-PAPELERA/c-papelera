@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import {
   Carousel,
@@ -18,6 +18,24 @@ const items = [
 
 const HomeSlider = () => {
   const [current, setCurrent] = useState(0);
+  const [api, setApi] = useState(null);
+  const timeoutRef = useRef(null);
+
+  const resetTimeout = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  };
+
+  // Cambiar cada 8 segundos
+  useEffect(() => {
+    if (!api) return;
+    resetTimeout();
+    timeoutRef.current = setTimeout(() => {
+      api.scrollNext();
+    }, 8000);
+    return () => resetTimeout();
+  }, [api, current]);
 
   return (
     <Carousel
@@ -25,25 +43,26 @@ const HomeSlider = () => {
         loop: true,
         align: "center",
       }}
-      setApi={(api) => {
-        if (!api) return;
-        api.on("select", () => {
-          setCurrent(api.selectedScrollSnap());
+      setApi={(carouselApi) => {
+        if (!carouselApi) return;
+        setApi(carouselApi);
+
+        carouselApi.on("select", () => {
+          setCurrent(carouselApi.selectedScrollSnap());
         });
       }}
-      className="pt-3 relative"
+      className="relative"
     >
-      <CarouselContent className="h-[400px] md:h-[520px] 2xl:h-[660px] !-ml-0">
+      <CarouselContent className="h-[400px] md:h-[520px] 2xl:h-[680px] !-ml-0">
         {items.map((item, index) => (
           <CarouselItem
             key={item.id}
-            className="relative basis-[85%] !p-1.5"
+            className="relative !p-0"
           >
             <Image
               src={item.image}
               alt={`Banner ${item.id}`}
-              className={`w-full h-full object-cover transition-all duration-1000
-                ${index === current ? "opacity-100" : "opacity-25"}`}
+              className={`w-full h-full object-cover transition-all duration-1000`}
               width={2000}
               height={1000}
             />
