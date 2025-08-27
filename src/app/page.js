@@ -13,56 +13,56 @@ const featuredCategories = [
     title: "Impresión en línea",
     image:
       "/assets/svg/impresion.svg",
-    link: "/store",
+    link: "/store/products?category=187028062&offset=0",
     color: "bg-blue-500/40",
   },
   {
     title: "Oficina",
     image:
       "/assets/svg/stapler-remover.svg",
-    link: "/store",
+    link: "/store/products?category=187688581&offset=0",
     color: "bg-indigo-500/40",
   },
   {
     title: "Estudiantil",
     image:
       "/assets/svg/backpack.svg",
-    link: "/store",
+    link: "/store/products?category=187688589&offset=0",
     color: "bg-orange-500/40",
   },
   {
     title: "Tecnología",
     image:
       "/assets/svg/sound.svg",
-    link: "/store",
+    link: "/store/products?category=187688591&offset=0",
     color: "bg-cyan-500/40",
   },
   {
     title: "Arte",
     image:
       "/assets/svg/paint-palette.svg",
-    link: "/store",
+    link: "/store/products?category=187681684&offset=0",
     color: "bg-emerald-500/40",
   },
   {
     title: "Fiesta",
     image:
       "/assets/svg/balloon.svg",
-    link: "/store/products/726057533",
+    link: "/store/products?category=187688560&offset=0",
     color: "bg-red-500/40",
   },
   {
     title: "Hogar",
     image:
       "/assets/svg/clean-house.svg",
-    link: "/store",
+    link: "/store/products?category=187688570&offset=0",
     color: "bg-yellow-500/40",
   },
   {
     title: "Lectura",
     image:
       "/assets/svg/open-book.svg",
-    link: "/store",
+    link: "/store/products?category=187028062&offset=0",
     color: "bg-purple-500/40",
   },
 ];
@@ -140,13 +140,13 @@ export default function Home() {
         <h3 className="self-start text-2xl xs:text-3xl font-semibold text-papelera mt-15">
           Los Mejores Productos
         </h3>
-        <FeaturedProducts limit={5} query={{ "category": 187492030 }} />
+        <FeaturedProducts limit={5} query={{ "category": 187616293 }} />
 
         {/* Productos destacados */}
         <h3 className="self-start text-2xl xs:text-3xl font-semibold text-papelera mt-25">
           Los Más Vendidos
         </h3>
-        <FeaturedProducts limit={5} query={{ "category": 187493532 }} />
+        <FeaturedProducts limit={5} query={{ "category": 187677636 }} />
 
         {/* Colecciones diseño */}
         <CollectionsBanners />
@@ -155,8 +155,8 @@ export default function Home() {
         <PromoBanner />
 
         {/* Productos destacados */}
-        <div className="-mt-10 flex items-center justify-center">
-          <FeaturedProducts limit={5} query={{ "category": 187616293 }} />
+        <div className="-mt-15 flex items-center justify-center">
+          <FeaturedProducts limit={3} query={{ "category": 187677637 }} />
         </div>
 
         {/* Características */}

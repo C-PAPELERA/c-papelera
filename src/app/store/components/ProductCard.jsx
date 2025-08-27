@@ -23,7 +23,7 @@ const ProductCard = ({ product, showSidebar }) => {
           onClick={handleClick}
           className={cn(
             "relative w-full aspect-[4/5] overflow-hidden",
-            showSidebar ? "h-[240px] sm:h-[300px] lg:h-[400px]" : "h-[300px]"
+            showSidebar ? "h-[240px] sm:h-[220px] lg:h-[220px] xl:h-[320px]" : "h-[320px] sm:h-[280px] lg:h-[260px] xl:h-[260px] 2xl:h-[320px]"
           )}
         //className={`cursor-pointer group relative h-full w-full overflow-hidden rounded-lg`}
         >
@@ -34,7 +34,7 @@ const ProductCard = ({ product, showSidebar }) => {
             width={500}
             height={500}
             className={cn(
-              "absolute inset-0 size-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-100 p-8",
+              "absolute inset-0 aspect-square self-center object-cover transition-transform duration-300 group-hover:scale-105 opacity-100 p-4",
               product.galleryImages.length > 0 && "group-hover:opacity-0"
             )}
           />

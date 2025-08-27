@@ -13,7 +13,6 @@ const FeaturedProductItem = ({ product }) => {
             width={500}
             height={1000}
             className="size-full object-cover"
-            priority
             sizes="(max-width: 768px) 100vw, 25vw"
           />
         </div>

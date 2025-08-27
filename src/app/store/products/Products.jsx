@@ -85,7 +85,7 @@ const Products = ({
       <div className="flex flex-col gap-4">
         <ul
           role="list"
-          className="py-8 grid grid-cols-2 gap-y-12 gap-x-3 sm:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
+          className={`py-8 grid grid-cols-2 gap-y-8 gap-x-3 sm:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-4 ${showSidebar ? "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"}`}
         >
           {loading ? (
             // Mostrar 8 skeletons mientras carga

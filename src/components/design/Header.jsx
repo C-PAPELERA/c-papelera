@@ -80,15 +80,15 @@ const Header = () => {
       {/* Barra categorias siempre visible */}
       <Container classNameParent="bg-white hidden lg:block">
         <div className="flex flex-row justify-between text-center text-[14px] uppercase text-papelera font-semibold py-4">
-          <Link href="/store">Impresión en Línea</Link>
-          <Link href="/store">Estudiantil</Link>
-          <Link href="/store">Oficina</Link>
-          <Link href="/store">Arte</Link>
-          <Link href="/store">Tecnología</Link>
-          <Link href="/store">Hogar</Link>
-          <Link href="/store">Lectura</Link>
-          <Link href="/store">Fiesta</Link>
-          <Link href="/store">Snacks</Link>
+          <Link href="/store/products?category=187028062&offset=0">Impresión en Línea</Link>
+          <Link href="/store/products?category=187688589&offset=0">Estudiantil</Link>
+          <Link href="/store/products?category=187688581&offset=0">Oficina</Link>
+          <Link href="/store/products?category=187681684&offset=0">Arte</Link>
+          <Link href="/store/products?category=187688591&offset=0">Tecnología</Link>
+          <Link href="/store/products?category=187688570&offset=0">Hogar</Link>
+          <Link href="/store/products?category=187028062&offset=0">Lectura</Link>
+          <Link href="/store/products?category=187688560&offset=0">Fiesta</Link>
+          <Link href="/store/products?category=187028062&offset=0">Snacks</Link>
         </div>
       </Container>
 

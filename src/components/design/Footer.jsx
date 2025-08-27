@@ -1,5 +1,8 @@
 'use client'
 
+import Link from "next/link";
+import Image from "next/image";
+
 const navigation = {
   customer_service: [
     { name: 'Horario: 6:00AM a 10:00PM', href: '#' },
@@ -58,61 +61,76 @@ const navigation = {
     },
   ],
 }
-
 export default function Footer() {
   return (
     <footer className="bg-papelera dark:bg-gray-900">
       <div className="mx-auto max-w-[85%] px-6 pt-20 pb-8 sm:pt-24 lg:px-8 lg:pt-24">
-        
         {/* Grid principal */}
         <div className="grid grid-cols-1 gap-12 xl:grid-cols-3 xl:gap-16">
-          
-          {/* Columna izquierda (ocupa 2/3 en xl) */}
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3 xl:col-span-2">
-            <div>
-              <h3 className="text-sm/6 font-semibold text-white dark:text-white">Atención al cliente</h3>
-              <ul role="list" className="mt-6 space-y-3">
-                {navigation.customer_service.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      className="text-sm/6 text-white hover:text-white dark:text-gray-400 dark:hover:text-white"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+          {/* Columna izquierda (logo + enlaces, ocupa 2/3 en xl) */}
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-5 xl:col-span-2 items-start">
+            {/* Logo (solo 1 columna) */}
+            <div className="md:col-span-1">
+              <Link href="/" className="inline-block">
+                <Image
+                  src="/assets/img/logo-icon.png"
+                  alt="Logo Comercial Papelera"
+                  width={90}
+                  height={45}
+                  className="w-[100px] xl:w-[120px] object-contain"
+                />
+              </Link>
             </div>
-            <div>
-              <h3 className="text-sm/6 font-semibold text-white dark:text-white">Nuestra Compañia</h3>
-              <ul role="list" className="mt-6 space-y-3">
-                {navigation.company.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      className="text-sm/6 text-white hover:text-white dark:text-gray-400 dark:hover:text-white"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-sm/6 font-semibold text-white dark:text-white">Información legal</h3>
-              <ul role="list" className="mt-6 space-y-3">
-                {navigation.legal.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      className="text-sm/6 text-white hover:text-white dark:text-gray-400 dark:hover:text-white"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+
+            {/* Enlaces (4 columnas en md) */}
+            <div className="md:col-span-4 grid grid-cols-1 gap-8 sm:grid-cols-3">
+              <div>
+                <h3 className="text-sm/6 font-semibold text-white dark:text-white">Atención al cliente</h3>
+                <ul role="list" className="mt-6 space-y-3">
+                  {navigation.customer_service.map((item) => (
+                    <li key={item.name}>
+                      <a
+                        href={item.href}
+                        className="text-sm/6 text-white hover:text-white dark:text-gray-400 dark:hover:text-white"
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-sm/6 font-semibold text-white dark:text-white">Nuestra Compañía</h3>
+                <ul role="list" className="mt-6 space-y-3">
+                  {navigation.company.map((item) => (
+                    <li key={item.name}>
+                      <a
+                        href={item.href}
+                        className="text-sm/6 text-white hover:text-white dark:text-gray-400 dark:hover:text-white"
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-sm/6 font-semibold text-white dark:text-white">Información legal</h3>
+                <ul role="list" className="mt-6 space-y-3">
+                  {navigation.legal.map((item) => (
+                    <li key={item.name}>
+                      <a
+                        href={item.href}
+                        className="text-sm/6 text-white hover:text-white dark:text-gray-400 dark:hover:text-white"
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
 
@@ -135,14 +153,6 @@ export default function Footer() {
                 autoComplete="email"
                 className="w-full min-w-0 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 sm:w-64 sm:text-sm/6 xl:w-full dark:bg-white/5 dark:text-white dark:outline-gray-700 dark:focus:outline-indigo-500"
               />
-              {/* <div className="mt-4 sm:mt-0 sm:ml-4 sm:shrink-0">
-                <button
-                    type="submit"
-                    className="flex w-full items-center justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500"
-                  >
-                    Enviar
-                  </button>
-              </div> */}
             </form>
           </div>
         </div>

@@ -33,7 +33,7 @@ const ProductCard = ({ product, setOpen }) => {
         <div
           onClick={handleClick}
           className={cn(
-            "relative w-full aspect-[4/5] overflow-hidden",
+            "relative w-full aspect-[4/5] overflow-hidden h-[320px] lg:h-[260px] xl:h-[260px] 2xl:h-[320px]",
           )}
         //className={`cursor-pointer group relative h-full w-full overflow-hidden rounded-lg`}
         >
@@ -44,7 +44,7 @@ const ProductCard = ({ product, setOpen }) => {
             width={500}
             height={500}
             className={cn(
-              "absolute inset-0 size-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-100 p-8",
+              "absolute inset-0 aspect-square self-center object-cover transition-transform duration-300 group-hover:scale-105 opacity-100 p-8",
               product.galleryImages.length > 0 && "group-hover:opacity-0"
             )}
           />
@@ -159,7 +159,7 @@ const ProductsSearch = () => {
               />
             </div>
             {records.length > 0 && (
-              <div className="pt-10 grid xs:grid-cols-2 lg:grid-cols-5 gap-4">
+              <div className="pt-10 grid xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
                 {records.map((product) => (
                   <ProductCard
                     key={product.id}
