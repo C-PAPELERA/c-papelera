@@ -109,7 +109,7 @@ export async function getProducts({ query }) {
   //queryParams.cleanUrls = "true";
   //queryParams.baseUrl = "/";
   queryParams.enabled = "true";
-  queryParams.limit = "40";
+  queryParams.limit = "60";
 
   /* if (query) {
     queryParams.keyword = `${query}`;
@@ -126,7 +126,7 @@ export async function getProducts({ query }) {
     //tags: [TAGS.products]
   });
 
-  return res.body?.items;
+  return res.body;
 }
 
 export async function getBreadcrumbs(id) {

@@ -6,7 +6,7 @@ export default function PromoBanners() {
           <img
             alt="Two models wearing women's black cotton crewneck tee and off-white cotton crewneck tee."
             src="/assets/img/termos-stanley.jpg"
-            className="absolute size-full object-cover group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+            className="absolute size-full object-cover group-hover:scale-105 transition-all duration-500"
           />
           <div aria-hidden="true" className="absolute inset-0 bg-linear-to-b from-transparent to-black opacity-50" />
           <div className="absolute inset-0 flex items-end p-6">
@@ -27,7 +27,7 @@ export default function PromoBanners() {
           <img
             alt="Wooden shelf with gray and olive drab green baseball caps, next to wooden clothes hanger with sweaters."
             src="/assets/img/juicer-banner.webp"
-            className="absolute size-full object-cover group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+            className="absolute size-full object-cover group-hover:scale-105 transition-all duration-500"
           />
           <div aria-hidden="true" className="absolute inset-0 bg-linear-to-b from-transparent to-black opacity-50" />
           <div className="absolute inset-0 flex items-end p-6">
@@ -48,7 +48,7 @@ export default function PromoBanners() {
           <img
             alt="Walnut desk organizer set with white modular trays, next to porcelain mug on wooden desk."
             src="/assets/img/implementos-oficina.jpg"
-            className="absolute size-full object-cover group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+            className="absolute size-full object-cover group-hover:scale-105 transition-all duration-500"
           />
           <div aria-hidden="true" className="absolute inset-0 bg-linear-to-b from-transparent to-black opacity-50" />
           <div className="absolute inset-0 flex items-end p-6">

@@ -14,11 +14,10 @@ export default async function Page() {
 
   return (
     <>
-      <div className="pt-10">
+      <div className="pt-20 pb-50">
         <div id="ecStoreProductBrowser">
           <div className="flex items-center justify-center h-[60vh]">
-            <p>Cargando carrito...</p>
-            <Loader2 className="animate-spin" />
+            <Loader2 className="animate-spin" size={30} stroke="#012F49" />
           </div>
         </div>
       </div>
@@ -44,7 +43,20 @@ export default async function Page() {
                 Ecwid.openPage('cart');
               }
             });
-                                    
+            
+            Ecwid.OnPageLoaded.add(function (page) {
+              window.ec.config.chameleon = window.ec.config.chameleon || Object();
+              window.ec.config.chameleon.colors = {
+                'color-background': '#FFFFFF',
+                'color-foreground': '#1F1F1F',
+                'color-link': '#012F49',
+                'color-button': '#012F49',
+                'color-price': '#012F49'
+              }
+              const lighspeed = document.querySelector(".ec-lightspeed-branding--no-menu");
+              if (lighspeed) { lighspeed.style.display = "none"; }
+            })
+
             Ecwid.OnPageSwitch.add(function (page) {
               let is_cart_page = page.type == 'CART';
               let is_download_error_page = page.type == 'DOWNLOAD_ERROR';
@@ -90,24 +102,3 @@ export default async function Page() {
     </>
   );
 }
-
-/* import { cookies } from "next/headers";
-import EcwidCheckout from "../components/EcwidCheckout";
-
-export const metadata = {
-  title: "Carrito de compras",
-  description: "Revisa los productos que estás a punto de comprar.",
-};
-
-export default async function Page() {
-  const storeId = process.env.ECWID_STORE_ID;
-  const cookieStore = await cookies();
-  const cartId = cookieStore.get("cartId")?.value;
-
-  return (
-    <>
-      <h1 className="mb-8 text-5xl font-bold">Checkout</h1>
-      <EcwidCheckout storeId={storeId} cartId={cartId} />
-    </>
-  );
-} */

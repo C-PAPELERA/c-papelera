@@ -1,17 +1,9 @@
-"use client";
-
-// Hooks
-import { useRouter } from "next/navigation";
 
 import ProductTag from "./ProductTag";
 import Image from "next/image";
+import Link from "next/link";
 
 const RelatedProductCard = ({ product }) => {
-  const router = useRouter();
-
-  const handleClick = () => {
-    router.push(`/store/products/${product.id}`);
-  };
 
   return (
     <div>
@@ -35,8 +27,8 @@ const RelatedProductCard = ({ product }) => {
             height={500}
           />
         </div>
-        <div
-          onClick={handleClick}
+        <Link
+          href={`/store/products/${product.id}`}
           className={`cursor-pointer absolute inset-x-0 top-0 flex h-[300px] items-end justify-end overflow-hidden rounded-lg p-4`}
         >
           <div
@@ -66,19 +58,16 @@ const RelatedProductCard = ({ product }) => {
               {product.defaultDisplayedPriceFormatted}
             </p>
           </div>
-        </div>
+        </Link>
         <div className="relative mt-4">
           <h3 className="text-sm font-medium text-gray-900">{product.name}</h3>
           <p className="mt-1 text-sm text-gray-500">REF {product.sku}</p>
         </div>
       </div>
-      <div className="mt-6">
-        <button
-          onClick={handleClick}
-          className="w-full relative flex items-center justify-center rounded-md border border-transparent bg-gray-100 px-8 py-2 text-sm font-medium text-gray-900 hover:bg-gray-200"
-        >
-          Comprar<span className="sr-only">, {product.name}</span>
-        </button>
+      <div
+        className="w-full mb-2 mt-4 relative flex items-center justify-center rounded-md border border-transparent bg-papelera px-8 py-2 text-sm font-medium text-white hover:bg-papelera/95"
+      >
+        Comprar<span className="sr-only">, {product.name}</span>
       </div>
     </div>
   );

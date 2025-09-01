@@ -37,13 +37,13 @@ export default function CollectionsBanners() {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
-              <h3 className="mt-6 text-sm text-gray-500">
+              <h3 className="mt-5 text-md text-gray-500">
                 <a href={callout.href}>
                   <span className="absolute inset-0" />
                   {callout.name}
                 </a>
               </h3>
-              <p className="text-lg font-semibold text-papelera">{callout.description}</p>
+              <p className="text-xl font-semibold text-papelera">{callout.description}</p>
             </div>
           ))}
         </div>

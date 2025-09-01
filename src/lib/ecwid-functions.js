@@ -107,14 +107,27 @@ export async function ecwidFetch({
 export async function getProducts({ query, limit = 40 }) {
   var queryParams = {};
 
-  //queryParams.cleanUrls = "true";
-  //queryParams.baseUrl = "/";
   queryParams.enabled = "true";
   queryParams.limit = limit;
 
   const res = await ecwidFetch({
     method: "GET",
     path: `/products`,
+    query: { ...queryParams, ...query },
+  });
+
+  return res.body?.items;
+}
+
+export async function getCategories({ query, limit = 40 }) {
+  var queryParams = {};
+
+  queryParams.enabled = "true";
+  queryParams.limit = limit;
+
+  const res = await ecwidFetch({
+    method: "GET",
+    path: `/categories`,
     query: { ...queryParams, ...query },
   });
 

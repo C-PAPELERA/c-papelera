@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { ArrowLeft, ArrowRightIcon } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const limite = 40;
+const limite = 60;
 
 const Pagination = ({ offset, setOffset, totalProducts }) => {
   const searchParams = useSearchParams();
@@ -27,11 +27,11 @@ const Pagination = ({ offset, setOffset, totalProducts }) => {
           }}
           className="group inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium text-gray-500 hover:border-papelera hover:text-papelera"
         >
-          <ArrowLeft aria-hidden="true" className="mr-3 size-5 text-gray-400 group-hover:text-papelera" />
+          <ArrowLeft aria-hidden="true" className="mr-2 size-5 text-gray-400 group-hover:text-papelera" />
           Anterior
         </button>
       </div>
-      <div className="hidden md:-mt-px md:flex">
+      <div className="hidden lg:-mt-px lg:flex">
         {[...Array(totalPages)].map((_, index) => (
           <button
             key={index}
@@ -40,7 +40,7 @@ const Pagination = ({ offset, setOffset, totalProducts }) => {
               index + 1 === currentPage
                 ? "border-papelera text-papelera"
                 : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
-              "inline-flex items-center border-t-2 pt-4 px-4 text-sm font-medium"
+              "inline-flex items-center border-t-2 pt-4 px-3.5 text-sm font-medium"
             )}
           >
             {index + 1}
@@ -57,7 +57,7 @@ const Pagination = ({ offset, setOffset, totalProducts }) => {
           Siguiente
           <ArrowRightIcon
             aria-hidden="true"
-            className="ml-3 size-5 text-gray-400 group-hover:text-papelera"
+            className="ml-2 size-5 text-gray-400 group-hover:text-papelera"
           />
         </button>
       </div>

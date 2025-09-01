@@ -1,6 +1,5 @@
 "use client";
 
-import Header from "@/components/design/Header";
 import { createContext, useState } from "react";
 
 const LayoutVisibilityContext = createContext({

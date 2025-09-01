@@ -1,20 +1,11 @@
-'use client'
 
-import { useEffect, useState } from "react";
 import { getProducts } from "@/lib/ecwid-functions";
 import ProductCard from "../../app/store/components/ProductCard";
 
-const FeaturedProducts = ({ query = null, limit = 5 }) => {
-  const [products, setProducts] = useState([]);
+const FeaturedProducts = async ({ query = null, limit = 5 }) => {
 
-  useEffect(() => {
-    async function getFeaturedProducts() {
-      const res = await getProducts({ query: query, limit: limit });
-      setProducts(res);
-    }
-    getFeaturedProducts()
-  }, []);
-  
+  const products = await getProducts({ query: query, limit: limit });
+
   return (
     <div className="w-full">
       <div className="flex flex-col gap-4">

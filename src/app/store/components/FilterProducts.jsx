@@ -14,19 +14,15 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-const FilterProducts = ({ categories }) => {
+const FilterProducts = ({ categories, brands }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  /* Categorias */
   const [selectedCategories, setSelectedCategories] = useState([]);
-
-  /* Tallas */
-  // const [selectedSizes, setSelectedSizes] = useState([]);
-
+  const [selectedBrands, setSelectedBrands] = useState([]);
   const isLoading = useRef(false);
 
-  /* Funciones */
+  // Categorias
   const handleChangeCategories = (checked, category) => {
     setSelectedCategories((prevCategories) => {
       if (checked) {
@@ -39,21 +35,19 @@ const FilterProducts = ({ categories }) => {
     });
   };
 
-  // const handleChangeSizes = (checked, size) => {
-  //   setSelectedSizes((prevSizes) => {
-  //     if (checked) {
-  //       return [...prevSizes, size.filterId];
-  //     } else {
-  //       return prevSizes.filter((sizeId) => sizeId !== size.filterId);
-  //     }
-  //   });
-  // };
-
-  /* useEffect */
+  // Marcas
+  const handleChangeBrands = (checked, brand) => {
+    setSelectedBrands((prevBrands) => {
+      if (checked) {
+        return [...prevBrands, brand.filterId];
+      } else {
+        return prevBrands.filter((brandId) => brandId !== brand.filterId);
+      }
+    });
+  };
 
   useEffect(() => {
     const newParams = new URLSearchParams(searchParams.toString()); // clona los params actuales
-
     if (selectedCategories.length > 0) {
       newParams.set("categories", selectedCategories.join(","));
       router.push(`?${newParams.toString()}`);
@@ -63,17 +57,16 @@ const FilterProducts = ({ categories }) => {
     }
   }, [selectedCategories]);
 
-  // useEffect(() => {
-  //   const newParams = new URLSearchParams(searchParams.toString()); // clona los params actuales
-
-  //   if (selectedSizes.length > 0) {
-  //     newParams.set("option_Talla", selectedSizes.join(","));
-  //     router.push(`?${newParams.toString()}`);
-  //   } else if (isLoading.current) {
-  //     newParams.delete("option_Talla");
-  //     router.push(`?${newParams.toString()}`);
-  //   }
-  // }, [selectedSizes]);
+  useEffect(() => {
+    const newParams = new URLSearchParams(searchParams.toString()); // clona los params actuales
+    if (selectedBrands.length > 0) {
+      newParams.set("attribute_Brand", selectedBrands.join(","));
+      router.push(`?${newParams.toString()}`);
+    } else if (isLoading.current) {
+      newParams.delete("attribute_Brand");
+      router.push(`?${newParams.toString()}`);
+    }
+  }, [selectedBrands]);
 
   useEffect(() => {
     if (!isLoading.current) isLoading.current = true;
@@ -103,28 +96,28 @@ const FilterProducts = ({ categories }) => {
           )}
         </AccordionContent>
       </AccordionItem>
-      {/* <AccordionItem value="sizes">
-        <AccordionTrigger>Tallas</AccordionTrigger>
+      <AccordionItem value="brands">
+        <AccordionTrigger>Marcas</AccordionTrigger>
         <AccordionContent className="flex flex-col gap-4">
-          {sizes?.length > 0 ? (
-            sizes.map((size) => (
-              <div className="flex items-center space-x-2" key={size.filterId}>
+          {brands?.length > 0 ? (
+            brands.map((brand) => (
+              <div className="flex items-center space-x-2" key={brand.filterId}>
                 <Checkbox
-                  checked={selectedSizes.includes(size.filterId)}
+                  checked={selectedBrands.includes(brand.filterId)}
                   onCheckedChange={(checked) =>
-                    handleChangeSizes(checked, size)
+                    handleChangeBrands(checked, brand)
                   }
                 />
                 <span className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                  {size.filterId}
+                  {brand.filterId}
                 </span>
               </div>
             ))
           ) : (
-            <span className="text-sm">No hay tallas</span>
+            <span className="text-sm">No hay marcas</span>
           )}
         </AccordionContent>
-      </AccordionItem> */}
+      </AccordionItem>
     </Accordion>
   );
 };

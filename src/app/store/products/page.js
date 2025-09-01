@@ -24,6 +24,7 @@ export async function generateMetadata({ searchParams }) {
     "Comercial Papelera";
 
   return {
+    metadataBase: new URL("http://localhost:3000"),
     title: category.name,
     description: description,
     openGraph: {
@@ -58,9 +59,9 @@ export default async function ProductsPage({ searchParams }) {
     (await searchParams)?.category && (await searchParams)?.offset;
 
   if (!hasParams) {
-    redirect("/store/products?category=187028062&offset=0");
+    redirect("/");
   }
-
+  
   const res = await getProducts({
     query: await searchParams,
   });
@@ -78,8 +79,8 @@ export default async function ProductsPage({ searchParams }) {
     //tags: [TAGS.products]
   });
 
-  // Sizes
-  const sizesRes = await ecwidFetch({
+  // Brands
+  const brandsRes = await ecwidFetch({
     method: "POST",
     useStorefrontAPI: true,
     path: `/catalog/filters`,
@@ -88,19 +89,19 @@ export default async function ProductsPage({ searchParams }) {
     },
     //tags: [TAGS.products]
   });
-
-  const sizes = sizesRes.body.filters.find(
-    (f) => f.optionId === "Talla"
+  
+  const brands = brandsRes.body.filters.find(
+    (f) => f.attributeId === "Brand"
   )?.values;
 
   return (
-    <Container className={"py-10"}>
+    <Container className={"pt-10 pb-20"}>
       <Products
         searchParams={await searchParams}
         productsRes={res}
         breadcrumbs={breadcrumbs}
         categories={categories.body.items}
-        sizes={sizes}
+        brands={brands}
       />
     </Container>
   );

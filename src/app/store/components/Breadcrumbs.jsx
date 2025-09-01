@@ -9,10 +9,10 @@ const Breadcrumbs = ({ categories }) => {
         <li>
           <div>
             <Link
-              href={"/store/products?category=187028062&offset=0"}
-              className="text-sm font-medium text-gray-500 hover:text-gray-700"
+              href={"/"}
+              className="text-sm font-medium text-gray-500 hover:text-papelera"
             >
-              Tienda
+              TIENDA
             </Link>
           </div>
         </li>
@@ -28,8 +28,12 @@ const Breadcrumbs = ({ categories }) => {
                 <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
               </svg>
               <Link
-                href={`/store/products?category=${category.id}&offset=0`}
-                className="ml-1 text-sm font-medium text-gray-500 hover:text-gray-700"
+                href={
+                  category.id === 187874254
+                    ? "/store/brands"
+                    : `/store/products?category=${category.id}&offset=0`
+                }
+                className="ml-1 text-sm font-medium text-gray-500 hover:text-papelera"
               >
                 {category.name}
               </Link>

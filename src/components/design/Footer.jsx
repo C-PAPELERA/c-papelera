@@ -26,7 +26,7 @@ const navigation = {
   social: [
     {
       name: 'Facebook',
-      href: '#',
+      href: 'https://www.facebook.com/cpapelera24h',
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -39,7 +39,7 @@ const navigation = {
     },
     {
       name: 'Instagram',
-      href: '#',
+      href: 'https://www.instagram.com/cpapelera24h/?hl=es',
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -52,7 +52,7 @@ const navigation = {
     },
     {
       name: 'LinkedIn',
-      href: '#',
+      href: 'https://www.linkedin.com/company/comercial-papelera/',
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 448 512" {...props}>
           <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-48.3 62.9-48.3 67.2 0 79.7 61.9 79.7 142.3V416z" />
@@ -61,15 +61,16 @@ const navigation = {
     },
   ],
 }
+
 export default function Footer() {
   return (
     <footer className="bg-papelera dark:bg-gray-900">
       <div className="mx-auto max-w-[85%] px-6 pt-20 pb-8 sm:pt-24 lg:px-8 lg:pt-24">
         {/* Grid principal */}
         <div className="grid grid-cols-1 gap-12 xl:grid-cols-3 xl:gap-16">
-          {/* Columna izquierda (logo + enlaces, ocupa 2/3 en xl) */}
+          {/* Columna izquierda */}
           <div className="grid grid-cols-1 gap-8 md:grid-cols-5 xl:col-span-2 items-start">
-            {/* Logo (solo 1 columna) */}
+            {/* Logo */}
             <div className="md:col-span-1">
               <Link href="/" className="inline-block">
                 <Image
@@ -82,7 +83,7 @@ export default function Footer() {
               </Link>
             </div>
 
-            {/* Enlaces (4 columnas en md) */}
+            {/* Enlaces */}
             <div className="md:col-span-4 grid grid-cols-1 gap-8 sm:grid-cols-3">
               <div>
                 <h3 className="text-sm/6 font-semibold text-white dark:text-white">Atención al cliente</h3>
@@ -91,6 +92,7 @@ export default function Footer() {
                     <li key={item.name}>
                       <a
                         href={item.href}
+                        target="_blank"
                         className="text-sm/6 text-white hover:text-white dark:text-gray-400 dark:hover:text-white"
                       >
                         {item.name}
@@ -134,7 +136,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Columna derecha (suscripción, ocupa 1/3 en xl) */}
+          {/* Columna derecha */}
           <div>
             <h3 className="text-sm/6 font-medium text-white dark:text-white">Suscribirse</h3>
             <p className="mt-2 text-sm/6 text-white dark:text-gray-400">

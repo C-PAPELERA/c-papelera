@@ -28,6 +28,7 @@ import CertificationTable from "../../components/CertificationTable";
 import SizeGuide from "../../components/SizeGuide";
 //import { addToCartAction } from "@/app/actions/store";
 import useStore from "@/hooks/useStore";
+import Link from "next/link";
 
 const parseHtmlListToObject = (text) => {
   const regex = /<li id="(.*?)">(.*?)<\/li>/gs;
@@ -54,7 +55,7 @@ const RelatedProductsSection = ({ product }) => {
   );
 };
 
-const Product = ({ productRes, breadcrumbs, params }) => {
+const Product = ({ productRes, breadcrumbs, params, brand }) => {
   // Hooks general
   const quantityRef = useRef();
   const isMobile = useIsMobile(1024);
@@ -62,6 +63,7 @@ const Product = ({ productRes, breadcrumbs, params }) => {
   const [error, setError] = useState({});
   const [stock, setStock] = useState(1);
   const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [showGoToCart, setShowGoToCart] = useState(false);
 
   // Hooks products
   const [sku, setSku] = useState(null);
@@ -84,6 +86,7 @@ const Product = ({ productRes, breadcrumbs, params }) => {
 
   const handleAddToCart = () => {
     setIsAddedToCart(true);
+    setShowGoToCart(true);
     setError({});
 
     // if (!selectedSize) {
@@ -139,7 +142,7 @@ const Product = ({ productRes, breadcrumbs, params }) => {
         async
         strategy="afterInteractive" // Se carga después del render
       />
-      <Container classNameParent="pt-16 xs:pt-10">
+      <Container classNameParent="pt-16 xs:pt-10 pb-26">
         <Breadcrumbs categories={breadcrumbs} />
         <div className="pt-5 sm:pt-10 pb-28 md:grid md:grid-cols-2 lg:grid-cols-3 md:items-start md:gap-x-14 gap-y-6">
           <div className="lg:col-span-2 flex flex-col gap-10">
@@ -162,9 +165,22 @@ const Product = ({ productRes, breadcrumbs, params }) => {
             </div>
             <div className="flex flex-col gap-2">
               <h2 className="sr-only">Product information</h2>
-              <p className="text-2xl tracking-tight text-gray-900">
+              <p className="text-2xl tracking-tight font-medium text-gray-900">
                 {product.defaultDisplayedPriceFormatted}
               </p>
+
+              {/* Marca */}
+              {brand && (
+                <div className="flex gap-2 text-gray-900 mt-3">
+                  <div className="flex gap-1">
+                    <p>Marca:</p>
+                    <Link href={`/store/products?category=${brand.id}&offset=0`}>
+                      <p className="font-semibold underline text-papelera">{brand.name}</p>
+                    </Link>
+                  </div>
+                </div>
+              )}
+
               {product.ribbon && (
                 <ProductTag
                   tag={product.ribbon}
@@ -243,13 +259,20 @@ const Product = ({ productRes, breadcrumbs, params }) => {
                 />
               </div>
               <Button
-                className={"sm:w-2/4 !text-base rounded-md bg-papelera hover:bg-papelera"}
+                className={`sm:w-2/4 !text-base rounded-md ${showGoToCart ? "bg-white text-papelera border border-papelera hover:bg-gray-100" : "bg-papelera hover:bg-papelera/95"}`}
                 size={"lg"}
                 onClick={handleAddToCart}
               >
                 {isAddedToCart && <Loader2 className="mr-2 animate-spin" />}
                 Añadir al carrito
               </Button>
+              {showGoToCart && (
+                <a href="/store/cart?store-page=cart">
+                  <Button className={"w-full sm:w-2/4 !text-base rounded-md bg-papelera hover:bg-papelera/95"} size={"lg"}>
+                    Ir al Pago
+                  </Button>
+                </a>
+              )}
               {error.message && (
                 <p className="text-red-500 text-sm font-medium">
                   {error.message}

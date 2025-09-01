@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import clsx from "clsx";
 import Link from "next/link";
@@ -8,6 +9,7 @@ import ProductsSearch from "./ProductsSearch";
 import HamburgerMenu from "./HamburgerMenu";
 import Cart from "./Cart";
 import { User } from "lucide-react";
+import NavigationMenu from "./NavigationMenu";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -20,7 +22,7 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  
+
   return (
     <header className="fixed top-0 z-50 w-full bg-papelera transition-shadow duration-300 shadow-sm">
       {/* Solo visible cuando no está scrolleado */}
@@ -78,27 +80,24 @@ const Header = () => {
       </div>
 
       {/* Barra categorias siempre visible */}
-      <Container classNameParent="bg-white hidden lg:block">
-        <div className="flex flex-row justify-between text-center text-[14px] uppercase text-papelera font-semibold py-4">
-          <Link href="/store/products?category=187028062&offset=0">Impresión en Línea</Link>
-          <Link href="/store/products?category=187688589&offset=0">Estudiantil</Link>
-          <Link href="/store/products?category=187688581&offset=0">Oficina</Link>
-          <Link href="/store/products?category=187681684&offset=0">Arte</Link>
-          <Link href="/store/products?category=187688591&offset=0">Tecnología</Link>
-          <Link href="/store/products?category=187688570&offset=0">Hogar</Link>
-          <Link href="/store/products?category=187028062&offset=0">Lectura</Link>
-          <Link href="/store/products?category=187688560&offset=0">Fiesta</Link>
-          <Link href="/store/products?category=187028062&offset=0">Snacks</Link>
-        </div>
+      <Container classNameParent="bg-white hidden lg:block" className="w-full flex justify-center">
+        <NavigationMenu />
       </Container>
 
       {/* Barra inferior */}
-      <div className="w-full bg-papelera border-y border-white/20">
-        <Link href="/">
-          <p className="text-white text-md text-center py-2">Producto del Mes <strong>25% OFF</strong> ahorra $45.900</p>
+      <div className="relative w-full bg-[#E53187] border-y border-white/20">
+        {/* <img
+          src="/assets/img/producto-del-mes.png"
+          alt="banner superior"
+          className="absolute inset-0 w-full h-full object-cover opacity-0"
+        /> */}
+        <Link href="/store/products?category=187677637&offset=0" className="relative z-10 block">
+          <p className="text-white text-sm md:text-[16px] text-center py-2">
+            Producto del Mes <strong>25% OFF</strong> ahorra $45.900
+          </p>
         </Link>
-        {/* <img src="/assets/img/banner-superior.png" alt="banner superior" className="w-full h-7 object-cover md:h-10 lg:h-full border-b border-papelera-2" /> */}
       </div>
+
     </header>
   );
 };

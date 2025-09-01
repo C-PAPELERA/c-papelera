@@ -15,7 +15,7 @@ const Products = ({
   productsRes,
   breadcrumbs,
   categories,
-  sizes,
+  brands,
 }) => {
   // Hooks general
   const isMobile = useIsMobile();
@@ -28,40 +28,40 @@ const Products = ({
   const [products, setProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
 
-  const handlerProducts = () => {
+  const handlerProducts = () => {      
     setLoading(false); // Ocultar skeleton
-    setProducts(productsRes);
-    setTotalProducts(productsRes?.length || 0);
+    setProducts(productsRes?.items);
+    setTotalProducts(productsRes?.total || 0);
   };
 
-  const handlerFilterSizes = (paramsObject) => {
-    if (paramsObject.option_Talla) {
-      const selectedSizes = paramsObject.option_Talla.split(",");
-      const newProducts = new Map();
+  // const handlerFilterBrands = (paramsObject) => {    
+  //   if (paramsObject.attribute_Brand) {
+  //     const selectedBrands = paramsObject.attribute_Brand.split(",");
+  //     const newProducts = new Map();
 
-      for (const size of selectedSizes) {
-        for (const product of products) {
-          const hasInStock = product.combinations.some(
-            (combination) =>
-              combination.options.some(
-                (opt) => opt.name === "Talla" && opt.value === size
-              ) && combination.inStock
-          );
-
-          if (hasInStock && !newProducts.has(product.sku)) {
-            newProducts.set(product.sku, product);
-          }
-        }
-      }
-      setProducts(Array.from(newProducts.values()));
-    }
-  };
+  //     for (const brand of selectedBrands) {
+  //       for (const product of products) {
+  //         // const hasInStock = product.combinations.some(
+  //         //   (combination) =>
+  //         //     combination.options.some(
+  //         //       (opt) => opt.name === "Brand" && opt.value === brand
+  //         //     ) && combination.inStock
+  //         // );          
+          
+  //         if (!newProducts.has(product.sku)) {
+  //           newProducts.set(product.sku, product);
+  //         }
+  //       }
+  //     }      
+  //     setProducts(Array.from(newProducts.values()));
+  //   }
+  // };
 
   useEffect(() => {
     if (effectRan.current) {
       setLoading(true);
       handlerProducts();
-      handlerFilterSizes(searchParams);
+      // handlerFilterBrands(searchParams);
     }
   }, [searchParams]);
 
@@ -80,7 +80,7 @@ const Products = ({
       showSidebar={showSidebar}
       setShowSidebar={setShowSidebar}
       isMobile={isMobile}
-      sizes={sizes}
+      brands={brands}
     >
       <div className="flex flex-col gap-4">
         <ul

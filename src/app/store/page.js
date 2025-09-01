@@ -7,5 +7,5 @@ export const metadata = {
 };
 
 export default function StorePage() {
-  redirect("/store/products?category=187028062&offset=0");
+  redirect("/");
 }

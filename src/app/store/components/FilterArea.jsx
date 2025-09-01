@@ -20,7 +20,7 @@ const FilterArea = ({
   setOffset,
   breadcrumbs,
   categories,
-  sizes,
+  brands,
   showSidebar,
   setShowSidebar,
   isMobile,
@@ -51,7 +51,7 @@ const FilterArea = ({
               <SheetDescription />
             </SheetHeader>
             <div className="flex flex-col h-screen px-6">
-              <FilterProducts categories={categories} sizes={sizes} />
+              <FilterProducts categories={categories} brands={brands} />
             </div>
           </SheetContent>
         </Sheet>
@@ -69,7 +69,7 @@ const FilterArea = ({
               showSidebar ? "opacity-100" : "opacity-0"
             }`}
           >
-            <FilterProducts categories={categories} sizes={sizes} />
+            <FilterProducts categories={categories} brands={brands} />
           </div>
         </div>
       )}

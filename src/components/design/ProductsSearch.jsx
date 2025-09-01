@@ -1,7 +1,6 @@
 // Hooks
 import { useEffect, useState } from "react";
 import useDebounce from "@/hooks/use-debounces";
-import { useRouter } from "next/navigation";
 
 // Utils
 import { cn } from "@/lib/utils";
@@ -14,28 +13,25 @@ import { Button } from "../ui/button";
 import { searchProducts } from "@/app/actions/store";
 import ProductTag from "@/app/store/components/ProductTag";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import Link from "next/link";
 
 const ProductCard = ({ product, setOpen }) => {
 
-  const router = useRouter();
-
   const handleClick = () => {
-    router.push(`/store/products/${product.id}`);
     setOpen(false);
   };
 
   return (
-    <button
+    <Link
+      href={`/store/products/${product.id}`}
       onClick={handleClick}
       className="group block w-full h-full transition-transform duration-300 hover:scale-[1.02]"
     >
       <div className="flex flex-col h-full overflow-hidden bg-gray-50/30 shadow-sm shadow-papelera/20 hover:shadow-lg transition-shadow ring-1 ring-papelera/10 rounded-lg">
         <div
-          onClick={handleClick}
           className={cn(
             "relative w-full aspect-[4/5] overflow-hidden h-[320px] lg:h-[260px] xl:h-[260px] 2xl:h-[320px]",
           )}
-        //className={`cursor-pointer group relative h-full w-full overflow-hidden rounded-lg`}
         >
           {/* Imagen principal */}
           <Image
@@ -73,7 +69,7 @@ const ProductCard = ({ product, setOpen }) => {
         </div>
 
         {/* Info dentro de la card */}
-        <div className="flex flex-col flex-1 p-4">
+        <div className="flex flex-col flex-1 p-4 justify-between">
           <h3 className="text-sm sm:text-md font-semibold text-black line-clamp-2">
             {product.name}
           </h3>
@@ -81,27 +77,22 @@ const ProductCard = ({ product, setOpen }) => {
           <h3 className="mt-1 text-[16px] font-bold text-papelera">
             {product.defaultDisplayedPriceFormatted}
           </h3>
+          <div
+            className="w-full mb-2 mt-4 relative flex items-center justify-center rounded-md border border-transparent bg-papelera px-8 py-2 text-sm font-medium text-white hover:bg-papelera/95"
+          >
+            Comprar<span className="sr-only">, {product.name}</span>
+          </div>
         </div>
-
-        {/* <button
-        onClick={handleClick}
-        className="w-full relative flex items-center justify-center rounded-md border border-transparent bg-papelera px-8 py-2 text-sm font-medium text-white hover:bg-papelera/90"
-      >
-        Comprar<span className="sr-only">, {product.name}</span>
-      </button> */}
       </div>
-    </button>
+    </Link>
   );
 };
 
 const ProductsSearch = () => {
   const [query, setQuery] = useState("");
   const [records, setRecords] = useState([]);
-
   const [open, setOpen] = useState(false);
-
   const debouncedQuery = useDebounce(query, 500);
-
   const [scrolled, setScrolled] = useState(false);
 
   // Detectar scroll

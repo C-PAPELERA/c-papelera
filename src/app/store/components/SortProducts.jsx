@@ -25,7 +25,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 const options = [
   {
-    value: "default",
+    value: "RELEVANCE",
     label: "Recomendados",
   },
   {
@@ -51,7 +51,7 @@ const options = [
 ];
 
 const SortProducts = ({ setOffset }) => {
-  const [value, setValue] = useState("default");
+  const [value, setValue] = useState("RELEVANCE");
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -70,7 +70,7 @@ const SortProducts = ({ setOffset }) => {
     params.set("offset", 0);
     router.replace(`?${params.toString()}`);
 
-    setValue(currentValue === value ? "default" : currentValue);
+    setValue(currentValue === value ? "RELEVANCE" : currentValue);
     setOpen(false);
   };
 

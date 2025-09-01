@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Product from "./Product";
 import { ecwidFetch, getBreadcrumbs } from "@/lib/ecwid";
+import { getCategories } from "@/lib/ecwid-functions";
 
 export const dynamic = "force-dynamic";
 
@@ -20,6 +21,7 @@ export async function generateMetadata({ params }) {
   if (product.errorCode || product.error) return notFound();
 
   return {
+    metadataBase: new URL("http://localhost:3000"),
     title: product.name,
     description: product.seoDescription,
     openGraph: {
@@ -67,12 +69,20 @@ export default async function ProductPage({ params }) {
   // Breadcrumbs
   const breadcrumbs = await getBreadcrumbs(product.defaultCategoryId);
 
+  // Brand
+  let brand = null
+  const marcas = await getCategories({ query: { parent: 187874254 } })  
+  if (marcas) {
+    brand = product.categories.find((category) => marcas.some((item) => item.name === category.name));
+  }
+
   return (
     <Product
       productId={productId}
       params={params}
       productRes={product}
       breadcrumbs={breadcrumbs}
+      brand={brand}
     />
   );
 }

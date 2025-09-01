@@ -7,10 +7,6 @@
   @apply flex flex-col min-h-screen;
 }
 
-@utility main-content {
-  @apply flex-grow pt-35;  
-}
-
 @theme inline {
   --breakpoint-xs: 25rem;
   --breakpoint-xs-sm: 33rem;
