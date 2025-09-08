@@ -2,6 +2,8 @@ import Container from "@/components/design/Container";
 import { redirect, notFound } from "next/navigation";
 import Products from "./Products";
 import { ecwidFetch, getBreadcrumbs, getProducts } from "@/lib/ecwid";
+import StoreFeatures from "@/components/design/StoreFeatures";
+import { searchProducts } from "@/app/actions/store";
 
 export async function generateMetadata({ searchParams }) {
   const categoryId = (await searchParams)?.category;
@@ -61,7 +63,7 @@ export default async function ProductsPage({ searchParams }) {
   if (!hasParams) {
     redirect("/");
   }
-  
+
   const res = await getProducts({
     query: await searchParams,
   });
@@ -89,20 +91,24 @@ export default async function ProductsPage({ searchParams }) {
     },
     //tags: [TAGS.products]
   });
-  
+
   const brands = brandsRes.body.filters.find(
     (f) => f.attributeId === "Brand"
   )?.values;
 
   return (
-    <Container className={"pt-10 pb-20"}>
-      <Products
-        searchParams={await searchParams}
-        productsRes={res}
-        breadcrumbs={breadcrumbs}
-        categories={categories.body.items}
-        brands={brands}
-      />
-    </Container>
+    <>
+      <Container className={"pt-10 pb-20"}>
+        <Products
+          searchParams={await searchParams}
+          productsRes={res}
+          breadcrumbs={breadcrumbs}
+          categories={categories.body.items}
+          brands={brands}
+        />
+      </Container>
+      {/* Características de la tienda */}
+      <StoreFeatures />
+    </>
   );
 }

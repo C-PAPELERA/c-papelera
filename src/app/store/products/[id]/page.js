@@ -71,10 +71,34 @@ export default async function ProductPage({ params }) {
 
   // Brand
   let brand = null
-  const marcas = await getCategories({ query: { parent: 187874254 } })  
+  const marcas = await getCategories({ query: { parent: 187874254 } })
   if (marcas) {
-    brand = product.categories.find((category) => marcas.some((item) => item.name === category.name));
+    brand = marcas.find((item) => product.categories.some((category) => category.name === item.name))
   }
+
+  // Product related
+  const relatedProducts = await ecwidFetch({
+    method: "POST",
+    useStorefrontAPI: true,
+    path: '/catalog/related-products',
+    payload: {
+      productIdentifier: {
+        type: "PUBLISHED",
+        productId,
+      },
+      urlParams: {
+        baseUrl:
+          process.env.NODE_ENV === "production"
+            ? "https://c-papelera.vercel.app/store/products"
+            : "http://localhost:3000/store/products",
+        canonicalBaseUrl: "",
+        isCleanUrls: true,
+        isCanonicalUrlsEnabled: false,
+        isSlugsWithoutIds: false,
+      },
+    },
+    //tags: [TAGS.products]
+  });
 
   return (
     <Product
@@ -83,6 +107,7 @@ export default async function ProductPage({ params }) {
       productRes={product}
       breadcrumbs={breadcrumbs}
       brand={brand}
+      relatedProducts={relatedProducts.body?.items || []}
     />
   );
 }

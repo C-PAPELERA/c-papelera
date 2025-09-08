@@ -2,26 +2,25 @@
 
 // Hooks
 import { useEffect, useState } from "react";
-import { getRelatedProducts } from "@/app/actions/store";
+import { getProductstByCategory } from "@/app/actions/store";
 import ProductCard from "./ProductCard";
 
 // Components
 
-const RelatedProducts = ({ productIds }) => {
+const SameCategoryProducts = ({ categoryId }) => {  
   const [products, setProducts] = useState([]);
 
-  const fetchRelatedProducts = async () => {
-    if (productIds.length === 0) return;
+  const fetchProducts = async () => {
+    if (!categoryId) return;
 
-    const refererIds = productIds.join(",");
-    const res = await getRelatedProducts(refererIds);
+    const res = await getProductstByCategory(categoryId);
     setProducts(res.items);
     return;
   };
 
   useEffect(() => {
-    fetchRelatedProducts();
-  }, [productIds]);
+    fetchProducts();
+  }, [categoryId]);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-12 lg:grid-cols-3 sm:gap-x-6 xl:grid-cols-5">
@@ -32,4 +31,4 @@ const RelatedProducts = ({ productIds }) => {
   );
 };
 
-export default RelatedProducts;
+export default SameCategoryProducts;

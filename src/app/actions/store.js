@@ -85,5 +85,25 @@ export async function searchProducts(text) {
     query: { keyword: text, enabled: "true", limit: 5, searchMethod: "CP" },
   });
 
-  return res.body?.items;
+  return res.body;
+}
+
+export async function getRelatedProducts(productIds) {  
+  const res = await ecwidFetch({
+    method: "GET",
+    path: `/products`,
+    query: { enabled: "true", limit: 5, productId: productIds },
+  });
+
+  return res.body;
+}
+
+export async function getProductstByCategory(categoryId) {  
+  const res = await ecwidFetch({
+    method: "GET",
+    path: `/products`,
+    query: { enabled: "true", limit: 5, category: categoryId },
+  });
+
+  return res.body;
 }

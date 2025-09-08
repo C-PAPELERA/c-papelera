@@ -85,16 +85,13 @@ const Header = () => {
       </Container>
 
       {/* Barra inferior */}
-      <div className="relative w-full bg-[#E53187] border-y border-white/20">
-        {/* <img
-          src="/assets/img/producto-del-mes.png"
-          alt="banner superior"
-          className="absolute inset-0 w-full h-full object-cover opacity-0"
-        /> */}
-        <Link href="/store/products?category=187677637&offset=0" className="relative z-10 block">
-          <p className="text-white text-sm md:text-[16px] text-center py-2">
-            Producto del Mes <strong>25% OFF</strong> ahorra $45.900
-          </p>
+      <div className="h-[30px] md:h-[35px] lg:h-[40px] xl:h-[52px] relative w-full border-y border-white/90">
+        <Link href="/store/products?category=188328263&offset=0" className="relative z-10 block h-full">
+          <img
+            src="/assets/img/banner-superior.png"
+            alt="banner superior"
+            className="w-full h-full object-cover"
+          />
         </Link>
       </div>
 

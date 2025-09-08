@@ -28,7 +28,7 @@ export default function CollectionsBanners() {
       <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
         <h2 className="text-4xl font-bold text-papelera text-center">Nuestro Blog</h2>
         <p className="mt-4 mb-12 text-lg text-gray-600 text-center">Aprende como usar nuestros productos y servicios</p>
-        <div className="mt-8 space-y-12 lg:grid lg:grid-cols-3 lg:space-y-0 lg:gap-x-6">
+        <div className="mt-8 space-y-12 lg:grid lg:grid-cols-3 lg:space-y-0 lg:gap-x-8">
           {blogs.map((blog) => (
             <div key={blog.name} className="group relative">
               <div className="w-full rounded-lg overflow-hidden aspect-4/2">
@@ -44,8 +44,8 @@ export default function CollectionsBanners() {
                   <p>Yullior Barrios</p>
                   <p>249 vistas</p>
                 </div>
-                <p className="text-xl font-semibold text-papelera mb-2">{blog.name}</p>
-                <a href={blog.href}>
+                <p className="text-lg font-semibold text-papelera mb-2">{blog.name}</p>
+                <a href={blog.href} className="text-sm">
                   <span className="absolute inset-0" />
                   {blog.description}
                 </a>

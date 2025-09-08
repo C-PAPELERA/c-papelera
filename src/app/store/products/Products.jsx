@@ -16,7 +16,7 @@ const Products = ({
   breadcrumbs,
   categories,
   brands,
-}) => {
+}) => {  
   // Hooks general
   const isMobile = useIsMobile();
   const [loading, setLoading] = useState(true);
@@ -47,7 +47,7 @@ const Products = ({
   //         //       (opt) => opt.name === "Brand" && opt.value === brand
   //         //     ) && combination.inStock
   //         // );          
-          
+
   //         if (!newProducts.has(product.sku)) {
   //           newProducts.set(product.sku, product);
   //         }
@@ -73,42 +73,44 @@ const Products = ({
   }, []);
 
   return (
-    <FilterArea
-      setOffset={setOffset}
-      breadcrumbs={breadcrumbs}
-      categories={categories}
-      showSidebar={showSidebar}
-      setShowSidebar={setShowSidebar}
-      isMobile={isMobile}
-      brands={brands}
-    >
-      <div className="flex flex-col gap-4">
-        <ul
-          role="list"
-          className={`py-8 grid grid-cols-2 gap-y-8 gap-x-3 sm:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-4 ${showSidebar ? "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"}`}
-        >
-          {loading ? (
-            // Mostrar 8 skeletons mientras carga
-            <Skeletons.Products items={8} />
-          ) : products.length > 0 ? (
-            products.map((product) => (
-              <li key={product.id}>
-                <ProductCard product={product} showSidebar={showSidebar} />
+    <>
+      <FilterArea
+        setOffset={setOffset}
+        breadcrumbs={breadcrumbs}
+        categories={categories}
+        showSidebar={showSidebar}
+        setShowSidebar={setShowSidebar}
+        isMobile={isMobile}
+        brands={brands}
+      >
+        <div className="flex flex-col gap-4">
+          <ul
+            role="list"
+            className={`py-8 grid grid-cols-2 gap-y-8 gap-x-3 sm:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-4 ${showSidebar ? "md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"}`}
+          >
+            {loading ? (
+              // Mostrar 8 skeletons mientras carga
+              <Skeletons.Products items={8} />
+            ) : products.length > 0 ? (
+              products.map((product) => (
+                <li key={product.id}>
+                  <ProductCard product={product} showSidebar={showSidebar} />
+                </li>
+              ))
+            ) : (
+              <li className="col-span-4 w-full flex flex-col items-center justify-center">
+                <p className="font-medium">No se encontraron productos</p>
               </li>
-            ))
-          ) : (
-            <li className="col-span-4 w-full flex flex-col items-center justify-center">
-              <p className="font-medium">No se encontraron productos</p>
-            </li>
-          )}
-        </ul>
-        <Pagination
-          offset={offset}
-          setOffset={setOffset}
-          totalProducts={totalProducts}
-        />
-      </div>
-    </FilterArea>
+            )}
+          </ul>
+          <Pagination
+            offset={offset}
+            setOffset={setOffset}
+            totalProducts={totalProducts}
+          />
+        </div>
+      </FilterArea>
+    </>
   );
 };
 

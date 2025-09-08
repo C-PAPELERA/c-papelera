@@ -9,11 +9,11 @@ const Brands = async () => {
 
   return (
     <Container
-      className={"w-[85%] pt-20 pb-40 lg:pb-60 flex flex-col gap-4 items-center justify-center"}
+      className={"md:w-[85%] pt-20 pb-40 lg:pb-60 flex flex-col gap-4 items-center justify-center"}
     >
       <div className="w-full">
         <h2 className="text-4xl font-bold text-papelera">Nuestras Marcas</h2>
-        <p className="mt-3 mb-12 text-lg text-gray-600">Compra con tus marcas favoritas.</p>
+        <p className="mt-2 mb-12 text-lg text-gray-600">Compra con tus marcas favoritas.</p>
         <div className="mt-8 space-y-12 grid grid-cols-2 gap-x-4 md:grid-cols-3 xl:grid-cols-5 lg:space-y-0 lg:gap-x-6 lg:gap-y-8 xl:gap-y-10">
           {brands.map((brand) => (
             <div key={brand.name} className="group relative">

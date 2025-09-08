@@ -29,22 +29,22 @@ const features = [
 
 export default function StoreFeatures() {
   return (
-    <div className="pt-10 pb-2">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-25">
+    <div className="mt-15 mb-25">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-8 md:gap-20 lg:gap-35">
           {features.map((feauture) => (
             <div
               key={feauture.name}
-              className="flex flex-col items-center text-center p-6"
+              className="flex flex-col items-center text-center"
             >
-              <div className="flex items-center justify-center w-28 h-28 rounded-full bg-gray-100/80 mb-5 p-5">
+              <div className="flex items-center justify-center w-26 h-26 rounded-full bg-gray-100/80 mb-5 p-5">
                 <img
                   alt={feauture.name}
                   src={feauture.imageUrl}
-                  className={`h-8 w-8 object-contain ${feauture.size}`}
+                  className={`h-6 w-6 object-contain ${feauture.size}`}
                 />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900">{feauture.name}</h3>
+              <h3 className="text-md font-semibold text-gray-900">{feauture.name}</h3>
               <p className="mt-2 text-sm text-gray-600 leading-relaxed">
                 {feauture.description}
               </p>

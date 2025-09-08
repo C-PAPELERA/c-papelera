@@ -111,9 +111,10 @@ export async function getProducts({ query }) {
   queryParams.enabled = "true";
   queryParams.limit = "60";
 
-  /* if (query) {
-    queryParams.keyword = `${query}`;
-  } */
+  // Busqueda
+  if (query.keyword) {
+    queryParams.searchMethod = `CP`;
+  }
 
   /* if (sortKey && sortKey != "relevance") {
     queryParams.sortBy = `${sortKey}_${reverse ? "desc" : "asc"}`.toUpperCase();

@@ -23,7 +23,7 @@ export default async function Home() {
       {/* Slider */}
       <HomeSlider />
 
-      <Container className={"w-[85%] pt-20 pb-20 flex flex-col gap-4 items-center justify-center"}>
+      <Container className={"md:w-[85%] pt-20 flex flex-col gap-4 items-center justify-center"}>
 
         {/* Categorías principales */}
         <FeaturedCategories initialProducts={initialProducts} initialCategory={initialCategory} />

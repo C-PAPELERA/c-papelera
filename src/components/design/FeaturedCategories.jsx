@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getProducts } from "@/lib/ecwid-functions";
 import ProductCard from "../../app/store/components/ProductCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 // Categorías principales
 const featuredCategories = [
@@ -13,56 +13,70 @@ const featuredCategories = [
     title: "Impresión en línea",
     image: "/assets/svg/impresion.svg",
     link: "/store/products?category=187874255&offset=0",
-    color: "bg-blue-500/40",
+    color: "bg-[#012f49]",
   },
   {
     id: 187688581,
     title: "Oficina",
-    image: "/assets/svg/stapler-remover.svg",
+    image: "/assets/svg/oficina.svg",
     link: "/store/products?category=187688581&offset=0",
-    color: "bg-indigo-500/40",
+    color: "bg-[#1484e0]",
   },
   {
     id: 187688589,
     title: "Estudiantil",
-    image: "/assets/svg/backpack.svg",
+    image: "/assets/svg/estudiantil.svg",
     link: "/store/products?category=187688589&offset=0",
-    color: "bg-orange-500/40",
+    color: "bg-[#7de0a0]",
   },
   {
     id: 187688591,
     title: "Tecnología",
-    image: "/assets/svg/sound.svg",
+    image: "/assets/svg/tecnologia.svg",
     link: "/store/products?category=187688591&offset=0",
-    color: "bg-cyan-500/40",
+    color: "bg-[#42c0ef]",
   },
   {
     id: 187681684,
     title: "Arte",
-    image: "/assets/svg/paint-palette.svg",
+    image: "/assets/svg/arte.svg",
     link: "/store/products?category=187681684&offset=0",
-    color: "bg-emerald-500/40",
+    color: "bg-[#3ecdd8]",
   },
   {
     id: 187688560,
     title: "Fiesta",
-    image: "/assets/svg/balloon.svg",
+    image: "/assets/svg/fiesta.svg",
     link: "/store/products?category=187688560&offset=0",
-    color: "bg-red-500/40",
+    color: "bg-[#ea4e61]",
   },
   {
     id: 187688570,
     title: "Hogar",
-    image: "/assets/svg/clean-house.svg",
+    image: "/assets/svg/hogar.svg",
     link: "/store/products?category=187688570&offset=0",
-    color: "bg-yellow-500/40",
+    color: "bg-[#ffb703]",
   },
   {
     id: 187492035, // 187838717
     title: "Lectura",
-    image: "/assets/svg/open-book.svg",
+    image: "/assets/svg/lectura.svg",
     link: "/store/products?category=187838717&offset=0",
-    color: "bg-purple-500/40",
+    color: "bg-[#239fdd]",
+  },
+  {
+    id: 187492035, // 187838718
+    title: "Snacks",
+    image: "/assets/svg/snacks.svg",
+    link: "/store/products?category=187838718&offset=0",
+    color: "bg-[#ed684a]",
+  },
+  {
+    id: 187492035, // 188338270
+    title: "Mascotas",
+    image: "/assets/svg/mascotas.svg",
+    link: "/store/products?category=188338270&offset=0",
+    color: "bg-[#9585be]",
   },
 ];
 
@@ -72,6 +86,7 @@ export default function FeaturedCategories({ initialProducts, initialCategory })
 
   // Cache productos por categoria
   const [cache, setCache] = useState({ [initialCategory]: initialProducts });
+  const hoverTimeout = useRef(null);
 
   useEffect(() => {
     // Si ya existe en el cache
@@ -92,32 +107,45 @@ export default function FeaturedCategories({ initialProducts, initialCategory })
     if (category) { fetchProducts() }
   }, [category, cache]);
 
+  const handleMouseEnter = (catId) => {
+    hoverTimeout.current = setTimeout(() => {
+      setCategory(catId);
+    }, 300);
+  };
+
+  const handleMouseLeave = () => {
+    if (hoverTimeout.current) {
+      clearTimeout(hoverTimeout.current);
+    }
+  };
+
   return (
     <>
       <h3 className="flex items-center justify-center text-2xl xs:text-3xl font-semibold text-papelera">
-        Comprar por categoría
+        Comprar Por Categoría
       </h3>
-      <div className="w-full grid grid-cols-2 xs:grid-cols-4 xl:grid-cols-8 gap-x-0 gap-y-8 mt-10">
+      <div className="w-full grid grid-cols-2 xs:grid-cols-5 2xl:grid-cols-10 gap-x-0 gap-y-8 mt-10">
         {featuredCategories.map((cat) => (
           <Link
             key={cat.title}
             href={cat.link}
             aria-label={cat.title}
-            onMouseEnter={() => setCategory(cat.id)}
+            onMouseEnter={() => handleMouseEnter(cat.id)}
+            onMouseLeave={handleMouseLeave}
           >
             <div className="group hover:scale-105 transition-all duration-300 flex flex-col items-center">
               <div
-                className={`${cat.color} rounded-full border-1 border-papelera/80 shadow-sm group-hover:border-papelera group-hover:shadow-md transition-all w-24 h-24 sm:w-30 sm:h-30 flex items-center justify-center p-5`}
+                className={`${cat.color} rounded-full shadow-sm group-hover:shadow-md transition-all w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center p-5`}
               >
                 <Image
                   alt={cat.title}
                   src={cat.image}
-                  width={60}
-                  height={60}
-                  className="size-[50px] sm:size-[55px] lg:size-[55px] group-hover:scale-110 duration-300 transition-transform"
+                  width={100}
+                  height={100}
+                  className="size-[75px] group-hover:scale-110 duration-300 transition-transform"
                 />
               </div>
-              <p className="text-sm font-medium text-papelera mt-3 text-center">
+              <p className="text-[15px] font-medium text-papelera mt-3 text-center uppercase">
                 {cat.title}
               </p>
             </div>
@@ -130,7 +158,7 @@ export default function FeaturedCategories({ initialProducts, initialCategory })
         <div className="flex flex-col gap-4">
           <ul
             role="list"
-            className={`py-4 grid grid-cols-1 sm:grid-cols-2 gap-y-8 gap-x-3 sm:gap-x-6 lg:grid-cols-3 xl:grid-cols-5 xl:gap-x-4`}
+            className={`py-4 grid grid-cols-2 gap-y-8 gap-x-3 sm:gap-x-6 lg:grid-cols-3 xl:grid-cols-5 xl:gap-x-4`}
           >
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
