@@ -108,6 +108,9 @@ export default function FeaturedCategories({ initialProducts, initialCategory })
   }, [category, cache]);
 
   const handleMouseEnter = (catId) => {
+    if (hoverTimeout.current) {
+      clearTimeout(hoverTimeout.current);
+    }
     hoverTimeout.current = setTimeout(() => {
       setCategory(catId);
     }, 300);

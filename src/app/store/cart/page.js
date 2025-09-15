@@ -34,6 +34,14 @@ export default async function Page() {
         function load_ecwid() {
           if (typeof Ecwid != 'undefined') {
             Ecwid.OnAPILoaded.add(function () {
+              window.ec.config.chameleon = window.ec.config.chameleon || Object();
+              window.ec.config.chameleon.colors = {
+                'color-background': '#FFFFFF',
+                'color-foreground': '#1F1F1F',
+                'color-link': '#012F49',
+                'color-button': '#012F49',
+                'color-price': '#012F49'
+              };
               if (!ecwidLoaded) {
                 ecwidLoaded = true;
                 xProductBrowser("categoriesPerRow=3", "views=grid(3,3) list(10) table(20)", "categoryView=grid", "searchView=list", "id=ecStoreProductBrowser");
@@ -45,14 +53,6 @@ export default async function Page() {
             });
             
             Ecwid.OnPageLoaded.add(function (page) {
-              window.ec.config.chameleon = window.ec.config.chameleon || Object();
-              window.ec.config.chameleon.colors = {
-                'color-background': '#FFFFFF',
-                'color-foreground': '#1F1F1F',
-                'color-link': '#012F49',
-                'color-button': '#012F49',
-                'color-price': '#012F49'
-              }
               const lighspeed = document.querySelector(".ec-lightspeed-branding--no-menu");
               if (lighspeed) { lighspeed.style.display = "none"; }
             })

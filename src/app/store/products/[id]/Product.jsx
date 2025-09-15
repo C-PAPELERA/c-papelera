@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react";
 // Components
 import Head from "next/head";
 import Script from "next/script";
+import Image from "next/image";
 import Container from "@/components/design/Container";
 import Skeletons from "@/components/design/Skeletons";
 import Breadcrumbs from "../../components/Breadcrumbs";
@@ -322,10 +323,10 @@ const Product = ({ productRes, breadcrumbs, params, brand, relatedProducts }) =>
 
               {/* Metodos de pago */}
               <div className="flex gap-2 items-center mt-6">
-                <img src="/assets/svg/ssl.svg" alt="Metodos de pago payu" className="w-10" />
+                <Image width={50} height={50} src="/assets/svg/ssl.svg" alt="Metodos de pago payu" className="w-10" />
                 <p className="text-[15px] text-gray-800">Pago 100% seguro con SSL</p>
               </div>
-              <img src="/assets/img/payu.png" alt="Metodos de pago payu" className="w-sm mt-2" />
+              <Image width={50} height={50} src="/assets/img/payu.png" alt="Metodos de pago payu" className="w-sm mt-2" />
 
             </div>
             {additionalFeatures?.certification == "true" && (
@@ -352,7 +353,9 @@ const Product = ({ productRes, breadcrumbs, params, brand, relatedProducts }) =>
               {brand && (
                 <div key={brand.name} className="group relative">
                   <div className="w-[100%] lg:w-[50%] xl:w-[25%] rounded-lg overflow-hidden aspect-4/3 ring-1 ring-papelera/10 p-10">
-                    <img
+                    <Image
+                      width={500}
+                      height={500}
                       alt={brand.name}
                       src={brand.imageUrl}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"

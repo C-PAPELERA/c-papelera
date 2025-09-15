@@ -10,6 +10,7 @@ import HamburgerMenu from "./HamburgerMenu";
 import Cart from "./Cart";
 import { User } from "lucide-react";
 import NavigationMenu from "./NavigationMenu";
+import PromoSlider from "./PromoSlider";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -85,16 +86,7 @@ const Header = () => {
       </Container>
 
       {/* Barra inferior */}
-      <div className="h-[30px] md:h-[35px] lg:h-[40px] xl:h-[52px] relative w-full border-y border-white/90">
-        <Link href="/store/products?category=188328263&offset=0" className="relative z-10 block h-full">
-          <img
-            src="/assets/img/banner-superior.png"
-            alt="banner superior"
-            className="w-full h-full object-cover"
-          />
-        </Link>
-      </div>
-
+      <PromoSlider />
     </header>
   );
 };

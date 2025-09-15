@@ -4,6 +4,7 @@ import { LayoutVisibilityProvider } from "@/context/LayoutVisibilityContext";
 import { Toaster } from "@/components/ui/sonner";
 import LayoutWithVisibility from "@/components/design/LayoutWithVisibility";
 import { StoreProvider } from "@/context/StoreContext";
+import SideCart from "@/components/design/SideCart";
 
 const rubik = Rubik ({
   variable: "--font-rubik",
@@ -30,6 +31,8 @@ export default function RootLayout({ children }) {
           <StoreProvider>
             <LayoutWithVisibility>
               <main className="">{children}</main>
+              {/* Carrito lateral global */}
+              <SideCart />
             </LayoutWithVisibility>
           </StoreProvider>
           <Toaster richColors closeButton />

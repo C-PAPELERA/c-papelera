@@ -1,3 +1,6 @@
+
+import Image from "next/image";
+
 const blogs = [
   {
     name: 'Cómo Solicitar el Servicio de Impresión DTF en Nuestra Página Web',
@@ -32,7 +35,9 @@ export default function CollectionsBanners() {
           {blogs.map((blog) => (
             <div key={blog.name} className="group relative">
               <div className="w-full rounded-lg overflow-hidden aspect-4/2">
-                <img
+                <Image
+                  width={500}
+                  height={500}
                   alt={blog.imageAlt}
                   src={blog.imageSrc}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"

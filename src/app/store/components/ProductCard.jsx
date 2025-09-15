@@ -73,7 +73,7 @@ const ProductCard = ({ product, showSidebar }) => {
         </div>
 
         {/* Info dentro de la card */}
-        <div className="flex flex-col flex-1 p-4 justify-between">
+        <div className="w-full flex flex-col flex-1 p-4 justify-between">
           <h3 className="text-sm sm:text-md font-semibold text-black line-clamp-2">
             {product.name}
           </h3>

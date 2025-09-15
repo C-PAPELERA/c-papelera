@@ -1,3 +1,6 @@
+
+import Image from "next/image";
+
 const callouts = [
   {
     name: 'Eficiencia en cada corte',
@@ -31,7 +34,9 @@ export default function CollectionsBanners() {
           {callouts.map((callout) => (
             <div key={callout.name} className="group relative">
               <div className="w-full rounded-lg overflow-hidden aspect-square">
-                <img
+                <Image
+                  width={500}
+                  height={500}
                   alt={callout.imageAlt}
                   src={callout.imageSrc}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"

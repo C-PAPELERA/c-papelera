@@ -1,9 +1,13 @@
 
+import Image from 'next/image'
+
 export default function PromoBanner() {
   return (
     <div className="bg-white w-full pt-10">
       <div aria-hidden="true" className="relative">
-        <img
+        <Image
+          width={500}
+          height={500}
           alt=""
           src="/assets/img/banner-destructora.jpg"
           className="h-96 w-full object-cover rounded-t-2xl"

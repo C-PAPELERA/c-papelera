@@ -1,4 +1,6 @@
 
+import Image from "next/image";
+
 // Características
 const features = [
   {
@@ -38,7 +40,9 @@ export default function StoreFeatures() {
               className="flex flex-col items-center text-center"
             >
               <div className="flex items-center justify-center w-26 h-26 rounded-full bg-gray-100/80 mb-5 p-5">
-                <img
+                <Image
+                  width={500}
+                  height={500}
                   alt={feauture.name}
                   src={feauture.imageUrl}
                   className={`h-6 w-6 object-contain ${feauture.size}`}

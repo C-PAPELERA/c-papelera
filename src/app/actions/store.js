@@ -78,6 +78,42 @@ export async function addToCartAction(item) {
   };
 }
 
+export async function clearCartAction() {
+  const cookieStore = await cookies();
+  const sessionToken = cookieStore.get(
+    `ec-${process.env.ECWID_STORE_ID}-session`
+  )?.value;
+
+  const res = await ecwidFetch({
+    method: "POST",
+    path: `/checkout/clear`,
+    useStorefrontAPI: true,
+    cache: "no-store",
+    tags: [TAGS.cart],
+    payload: {
+      lang: "en",
+    },
+    headers: {
+      Authorization: "Bearer " + sessionToken,
+    },
+  });
+
+  if (!res.body || res.status !== 200) {
+    console.error("Error al vaciar el carrito");
+    return undefined;
+  }
+
+  return {
+    id: res.body.checkout.id,
+    items: res.body.checkout.cartItems,
+    totalQuantity:
+      res.body.checkout.cartItems?.reduce(
+        (n, { quantity }) => n + quantity,
+        0
+      ) || 0,
+  };
+}
+
 export async function searchProducts(text) {
   const res = await ecwidFetch({
     method: "GET",
@@ -88,7 +124,7 @@ export async function searchProducts(text) {
   return res.body;
 }
 
-export async function getRelatedProducts(productIds) {  
+export async function getRelatedProducts(productIds) {
   const res = await ecwidFetch({
     method: "GET",
     path: `/products`,
@@ -98,7 +134,7 @@ export async function getRelatedProducts(productIds) {
   return res.body;
 }
 
-export async function getProductstByCategory(categoryId) {  
+export async function getProductstByCategory(categoryId) {
   const res = await ecwidFetch({
     method: "GET",
     path: `/products`,

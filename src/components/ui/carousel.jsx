@@ -1,4 +1,5 @@
 "use client";
+
 import * as React from "react"
 import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeft, ArrowRight } from "lucide-react"
@@ -114,7 +115,7 @@ function CarouselContent({
       <div
         className={cn(
           "flex",
-          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
+          orientation === "horizontal" ? "-ml-0" : "-mt-0 flex-col",
           className
         )}
         {...props} />

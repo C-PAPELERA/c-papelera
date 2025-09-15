@@ -53,18 +53,15 @@ const HomeSlider = () => {
       }}
       className="relative"
     >
-      <CarouselContent className="h-[400px] md:h-[600px] 2xl:h-[720px] !-ml-0">
-        {items.map((item, index) => (
-          <CarouselItem
-            key={item.id}
-            className="relative !p-0"
-          >
+      <CarouselContent className="!ml-0 aspect-[22/9] w-full">
+        {items.map((item) => (
+          <CarouselItem key={item.id} className="relative !p-0">
             <Image
               src={item.image}
               alt={`Banner ${item.id}`}
-              className={`w-full h-full object-cover transition-all duration-1000`}
-              width={2000}
-              height={1000}
+              className="w-full h-full object-cover transition-all duration-1000"
+              fill
+              priority
             />
           </CarouselItem>
         ))}

@@ -10,7 +10,7 @@ const LayoutWithVisibility = ({ children }) => {
   return (
     <>
       {!hideLayout && <Header />}
-      {!hideLayout && <div className="pt-40 sm:pt-46 lg:pt-60 xl:pt-64" />}
+      {!hideLayout && <div className="pt-42 sm:pt-44 lg:pt-60 xl:pt-64 max-[390px]:pt-40" />}
       {children}
       {!hideLayout && <Footer />}
     </>

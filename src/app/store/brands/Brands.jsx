@@ -1,11 +1,12 @@
 
+import Image from "next/image";
 import Container from "@/components/design/Container";
 import { getCategories } from "@/lib/ecwid-functions";
 
 const Brands = async () => {
 
   // Obtener marcas
-  const brands = await getCategories({ query: { parent: 187874254 } });  
+  const brands = await getCategories({ query: { parent: 187874254 } });
 
   return (
     <Container
@@ -18,7 +19,9 @@ const Brands = async () => {
           {brands.map((brand) => (
             <div key={brand.name} className="group relative">
               <div className="w-full rounded-lg overflow-hidden aspect-4/3 ring-1 ring-papelera/10 p-10">
-                <img
+                <Image
+                  width={500}
+                  height={500}
                   alt={brand.name}
                   src={brand.imageUrl}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"

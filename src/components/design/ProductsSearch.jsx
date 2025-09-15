@@ -3,6 +3,7 @@
 // Hooks
 import { useEffect, useState } from "react";
 import useDebounce from "@/hooks/use-debounces";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Utils
 import { cn } from "@/lib/utils";
@@ -18,6 +19,7 @@ import { useRouter } from "next/navigation";
 import ProductCard from "../../app/store/components/ProductCard";
 
 const ProductsSearch = () => {
+  const isMobile = useIsMobile();
   const [query, setQuery] = useState("");
   const [records, setRecords] = useState([]);
   const [open, setOpen] = useState(false);
@@ -35,78 +37,146 @@ const ProductsSearch = () => {
   }, []);
 
   const fetchRecords = async (text) => {
-    const res = await searchProducts(text);    
+    const res = await searchProducts(text);
     res.items.length > 5 ? setRecords(res.items.slice(0, 5)) : setRecords(res.items);
   };
 
   useEffect(() => {
-    if (!debouncedQuery) return;
-
+    if (!debouncedQuery) {
+      setRecords([]);
+      if (!isMobile) setOpen(false);
+      return;
+    }
     fetchRecords(debouncedQuery);
-    return;
-  }, [debouncedQuery]);
+    setOpen(true);
+  }, [debouncedQuery]);;
+
+  useEffect(() => {
+    if (!open) {
+      setQuery("");
+      setRecords([]);
+    }
+  }, [open]);
 
   return (
     <>
-      <Popover open={open} onOpenChange={setOpen}>
+      {!isMobile && (
+        <div className="relative">
+          <Search
+            strokeWidth={1.5}
+            className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-gray-500"
+          />
+          {/* Barra de busqueda desktop */}
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => {
+              setQuery(e.target.value)
+            }}
+            className="w-full pl-10 pr-30 rounded-lg h-9 bg-white text-sm focus-visible:outline-none"
+            placeholder="¿Qué necesita hoy?..."
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                router.push(`/store/products?category=187028062&offset=0&keyword=${query}`);
+                setOpen(false);
+              }
+            }}
+          />
+          {query && (
+            <X
+              strokeWidth={1.5}
+              className="absolute right-3 top-1/2 -translate-y-1/2 size-4 cursor-pointer text-gray-500"
+              onClick={() => setOpen(false)}
+            />
+          )}
+        </div>
+      )}
+      <Popover open={open}>
         <PopoverTrigger asChild>
-          <Button
-            variant="link"
-            className="!p-1.5 bg-white rounded-lg !h-8"
-          >
-            <Search strokeWidth={1.5} className="size-5 cursor-pointer" stroke="#012F49" />
-          </Button>
+          {isMobile ? (
+            // Boton de busqueda mobile
+            <Button
+              variant="link"
+              className="!p-1.5 bg-white rounded-lg !h-8"
+              onClick={() => setOpen(!open)}
+            >
+              <Search strokeWidth={1.5} className="size-5 cursor-pointer" stroke="#012F49" />
+            </Button>
+          ) : (
+            // Trigger vacio
+            <span></span>
+          )}
         </PopoverTrigger>
         <PopoverContent
+          sideOffset={scrolled ? isMobile ? -80 : -40 : isMobile ? 36 : 52}
           className={cn(
-            "!w-screen !rounded-none max-h-[100dvh] overflow-auto", scrolled ? "-mt-30 lg:-mt-15" : "mt-6",
-            records.length > 0 && "pb-42 lg:pb-10"
+            "!w-screen !rounded-none max-h-[100dvh] overflow-auto",
+            records.length > 0 && "pb-42 lg:pb-5"
           )}
+          onOpenAutoFocus={(e) => {
+            if (!isMobile) e.preventDefault()
+          }}
         >
           <Container classNameParent="bg-white py-3 lg:py-7.5">
-            <div className="flex items-center gap-4">
-              <Search
-                strokeWidth={1.5}
-                className="size-5 cursor-pointer"
-                onClick={() => {
-                  if (query) {
-                    router.push(`/store/products?category=187028062&offset=0&keyword=${query}`);
-                    setOpen(false);
-                  }
-                }}
-              />
-              <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                className="w-full focus-visible:outline-none"
-                placeholder="Buscar productos..."
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    router.push(`/store/products?category=187028062&offset=0&keyword=${query}`);
-                    setOpen(false);
-                  }
-                }}
-              />
+            {isMobile ? (
+              // Buscador interno mobile
+              <div className="flex items-center gap-4">
+                <Search
+                  strokeWidth={1.5}
+                  className="size-5 cursor-pointer"
+                  onClick={() => {
+                    if (query) {
+                      router.push(`/store/products?category=187028062&offset=0&keyword=${query}`);
+                      setOpen(false);
+                    }
+                  }}
+                />
+                <input
+                  type="text"
+                  value={query}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setQuery(value);
+                    if (!value) {
+                      setRecords([]);
+                    }
+                  }}
+                  className="w-full focus-visible:outline-none"
+                  placeholder="Buscar productos..."
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      router.push(`/store/products?category=187028062&offset=0&keyword=${query}`);
+                      setOpen(false);
+                    }
+                  }}
+                />
+                <X
+                  strokeWidth={1.5}
+                  className="size-5 cursor-pointer"
+                  onClick={() => setOpen(false)}
+                />
+              </div>
+            ) : (
               <X
                 strokeWidth={1.5}
-                className="size-5 cursor-pointer"
+                className="size-5 cursor-pointer absolute top-4 right-8"
                 onClick={() => setOpen(false)}
               />
-            </div>
+            )}
             {records.length > 0 && (
               <div className="pt-10 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
                 {records.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    setOpen={setOpen}
-                  />
+                  <div key={product.id} onClick={() => setOpen(false)}>
+                    <ProductCard
+                      key={product.id}
+                      product={product}
+                    />
+                  </div>
                 ))}
               </div>
             )}
             {records.length === 0 && query && (
-              <div className="pt-10">
+              <div className="py-10">
                 <p className="text-center text-gray-500">
                   No se encontraron resultados
                 </p>

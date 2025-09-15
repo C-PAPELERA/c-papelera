@@ -1,4 +1,3 @@
-"use client";
 
 const ProductTag = ({ tag, className }) => {
   return (
